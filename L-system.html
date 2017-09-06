@@ -1,0 +1,435 @@
+<html> 
+  <head> 
+        <meta charset="utf-8">
+		<script src="./js/d3.v4.min.js" charset="utf-8"></script>
+		<script src="./js/vector1.js" charset="utf-8"></script> 
+		<script src="./js/Turtle.js" charset="utf-8"></script> 
+		<script src="./js/code.js" charset="utf-8"></script> 
+
+		
+		<script language="JavaScript">
+		var s ="";
+		var arr = [];
+		function sleep(milliseconds) {
+		  var start = new Date().getTime();
+		  for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds){
+			  break;
+			}
+		  }
+		}
+		function Point(px,py) {
+　　　　	this.x = px;
+			this.y = py;
+　　	}
+		function up(){
+			//document.write("u");
+			arr.push("u");
+			return "u";
+		}
+		function down(){
+			//document.write("d");
+			arr.push("d");
+			return "d";
+		}
+		function left(){
+			//document.write("l");
+			arr.push("l");
+			return "l";
+		}
+		function right(){
+			//document.write("r");
+			arr.push("r");
+			return "r";
+		}
+		function H(depth){
+			if(depth == 0){
+				//document.write("H");
+				arr.push("H");
+				return "H";
+			}
+			else if(depth > 0){
+				A(depth - 1);up();
+				H(depth - 1);right();
+				H(depth - 1);down();
+				B(depth - 1);
+			}
+		}
+		function A(depth){
+			if(depth == 0){
+				//document.write("A");
+				arr.push("A");
+				return "A";
+			}
+			else if(depth > 0){
+				H(depth - 1);right();
+				A(depth - 1);up();
+				A(depth - 1);left();
+				C(depth - 1);
+			}
+		}
+		function B(depth){
+			if(depth == 0){
+				//document.write("B");
+				arr.push("B");
+				return "B";
+			}
+			else if(depth > 0){
+				C(depth - 1);left();
+				B(depth - 1);down();
+				B(depth - 1);right();
+				H(depth - 1);
+			}
+		}
+		function C(depth){
+			if(depth == 0){
+				//document.write("C");
+				arr.push("C");
+				return "C";
+			}
+			else if(depth > 0){
+				B(depth - 1);down();
+				C(depth - 1);left();
+				C(depth - 1);up();
+				A(depth - 1);
+			}
+		}
+		function Hilbert(type, depth){
+			
+			if(depth < 0)return;
+			document.querySelector('svg').innerHTML = '';
+			
+			arr = [];
+			if(type == "H")
+			{
+				H(depth);
+			}
+			else if(type == "A"){
+				A(depth);
+			}
+			else if(type == "B"){
+				B(depth);
+			}
+			else if(type == "C"){
+				C(depth);
+			}
+			console.log(arr);
+			var p1;
+			if(arr[0] == 'H' || arr[0] == 'A'){
+				p1 = new Point(0,720);
+			}else{
+				p1 = new Point(1080,0);
+			}
+			var d = 10;
+			for (i = 0; i < arr.length; i++){
+				if(arr[i] == 'H'){
+					p1 = drawH(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'A'){
+					p1 = drawA(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'B'){
+					p1 = drawB(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'C'){
+					p1 = drawC(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'u'){
+					p1 = drawUp(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'd'){
+					p1 = drawDown(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'l'){
+					p1 = drawLeft(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'r'){
+					p1 = drawRight(new Point(p1.x,p1.y),d);
+				}
+			}
+		}
+		function drawH(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y -(d)) 
+			+ "," + (Point.x + (d)) + " " + (Point.y -(d))
+			+ "," + (Point.x + (d)) + " " + Point.y ;
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x + (d),y:Point.y}
+			return endP;
+		}
+		function drawA(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" +(Point.x + (d)) + " " + Point.y 
+			+ "," + (Point.x + (d)) + " " + (Point.y-(d))
+			+ "," + Point.x + " " + (Point.y-(d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x,y:Point.y-(d)}
+			return endP;
+		}
+		function drawB(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" +(Point.x - (d)) + " " + Point.y 
+			+ "," + (Point.x - (d)) + " " + (Point.y+(d))
+			+ "," + Point.x + " " + (Point.y+(d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x,y:Point.y+(d)}
+			return endP;
+		}
+		function drawC(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y+(d))
+			+ "," + (Point.x - (d)) + " " + (Point.y+(d))
+			+ "," + (Point.x - (d)) + " " + Point.y;
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x - (d),y:Point.y}
+			return endP;
+		}
+		function drawUp(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y + " V" + (Point.y - (d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red');
+			var endP = {x:Point.x,y:Point.y- (d)}
+			return endP;
+		}
+		function drawDown(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y + " V" + (Point.y + (d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red');
+			var endP = {x:Point.x,y:Point.y + (d)}
+			return endP;
+		}
+		function drawLeft(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y + " H" + (Point.x - (d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red');
+			var endP = {x:Point.x - (d),y:Point.y}
+			return endP;
+		}
+		function drawRight(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y + " H" + (Point.x + (d));
+			svg.append('path').attr('d',pathStr).attr('stroke','red');
+			var endP = {x:Point.x + (d),y:Point.y}
+			return endP;
+		}
+		function P(depth){
+			if(depth == 0){
+				arr.push("P");
+				return "P";
+			}
+			else if(depth > 0){
+				P(depth - 1);up();
+				Q(depth - 1);up();
+				P(depth - 1);right();
+				S(depth - 1);down();
+				R(depth - 1);down();
+				S(depth - 1);right();
+				P(depth - 1);up();
+				Q(depth - 1);up();
+				P(depth - 1);
+			}
+		}
+		function Q(depth){
+			if(depth == 0){
+				arr.push("Q");
+				return "Q";
+			}
+			else if(depth > 0){
+				Q(depth - 1);up();
+				P(depth - 1);up();
+				Q(depth - 1);left();
+				R(depth - 1);down();
+				S(depth - 1);down();
+				R(depth - 1);left();
+				Q(depth - 1);up();
+				P(depth - 1);up();
+				Q(depth - 1);
+			}
+		}
+		function R(depth){
+			if(depth == 0){
+				arr.push("R");
+				return "R";
+			}
+			else if(depth > 0){
+				R(depth - 1);down();
+				S(depth - 1);down();
+				R(depth - 1);left();
+				Q(depth - 1);up();
+				P(depth - 1);up();
+				Q(depth - 1);left();
+				R(depth - 1);down();
+				S(depth - 1);down();
+				R(depth - 1);
+			}
+		}
+		function S(depth){
+			if(depth == 0){
+				arr.push("S");
+				return "S";
+			}
+			else if(depth > 0){
+				S(depth - 1);down();
+				R(depth - 1);down();
+				S(depth - 1);right();
+				P(depth - 1);up();
+				Q(depth - 1);up();
+				P(depth - 1);right();
+				S(depth - 1);down();
+				R(depth - 1);down();
+				S(depth - 1);
+			}
+		}
+		function Peano(type, depth){
+			
+			if(depth < 0)return;
+			document.querySelector('svg').innerHTML = '';
+			
+			arr = [];
+			if(type == "P")
+			{
+				P(depth);
+			}
+			else if(type == "Q"){
+				Q(depth);
+			}
+			else if(type == "R"){
+				R(depth);
+			}
+			else if(type == "S"){
+				S(depth);
+			}
+			console.log(arr);
+			var p1;
+			if(arr[0] == 'P'){
+				p1 = new Point(0,720);
+			}else if(arr[0] == 'Q'){
+				p1 = new Point(1080,720);
+			}else if(arr[0] == 'R'){
+				p1 = new Point(1080,0);
+			}else if(arr[0] == 'S'){
+				p1 = new Point(0,0);
+			}
+			var d = 5;
+			for (i = 0; i < arr.length; i++){
+				if(arr[i] == 'P'){
+					p1 = drawP(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'Q'){
+					p1 = drawQ(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'R'){
+					p1 = drawR(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'S'){
+					p1 = drawS(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'u'){
+					p1 = drawUp(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'd'){
+					p1 = drawDown(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'l'){
+					p1 = drawLeft(new Point(p1.x,p1.y),d);
+				}else if(arr[i] == 'r'){
+					p1 = drawRight(new Point(p1.x,p1.y),d);
+				}
+			}
+		}
+		function drawP(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y -(d*2)) 
+			+ "," + (Point.x + d) + " " + (Point.y -(d*2))
+			+ "," + (Point.x + d) + " " + Point.y
+			+ "," + (Point.x + (d*2)) + " " + Point.y
+			+ "," + (Point.x + (d*2)) + " " +(Point.y -(d*2));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x + (d*2),y:Point.y -(d*2)}
+			return endP;
+		}
+		function drawQ(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y -(d*2)) 
+			+ "," + (Point.x - d) + " " + (Point.y -(d*2))
+			+ "," + (Point.x - d) + " " + Point.y
+			+ "," + (Point.x - (d*2)) + " " + Point.y
+			+ "," + (Point.x - (d*2)) + " " +(Point.y -(d*2));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x - (d*2),y:Point.y -(d*2)}
+			return endP;
+		}
+		function drawR(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y +(d*2)) 
+			+ "," + (Point.x - d) + " " + (Point.y +(d*2))
+			+ "," + (Point.x - d) + " " + Point.y
+			+ "," + (Point.x - (d*2)) + " " + Point.y
+			+ "," + (Point.x - (d*2)) + " " +(Point.y +(d*2));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x - (d*2),y:Point.y +(d*2)}
+			return endP;
+		}
+		function drawS(Point,d){
+			var pathStr = "M" + Point.x + " " + Point.y 
+			+ " L" + Point.x + " " + (Point.y +(d*2)) 
+			+ "," + (Point.x + d) + " " + (Point.y +(d*2))
+			+ "," + (Point.x + d) + " " + Point.y
+			+ "," + (Point.x + (d*2)) + " " + Point.y
+			+ "," + (Point.x + (d*2)) + " " +(Point.y +(d*2));
+			svg.append('path').attr('d',pathStr).attr('stroke','red').attr('fill','none');
+			var endP = {x:Point.x + (d*2),y:Point.y +(d*2)}
+			return endP;
+		}
+		
+		</script>
+        <title></title> 
+  </head> 
+    <body> 
+		<div>
+			<table>
+				<tr>
+				</tr>
+				<tr>
+					<td>
+						Iterations:
+					</td>
+					<td>
+						<input type="text" name="Iterations" id="Iterations" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Angle:
+					</td>
+					<td>
+						<input type="text" name="Angle" id="Angle" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Constants:
+					</td>
+					<td>
+						<input type="text" name="Constants" id="Constants" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Axoim:
+					</td>
+					<td>
+						<input type="text" name="Axoim" id="Axoim" value="">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Rule1:
+					</td>
+					<td>
+						<textarea rows="2" cols="50" id="Rule1"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Rule2:
+					</td>
+					<td>
+						<textarea rows="2" cols="50" id="Rule2"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" onclick=exec()>Start</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<svg width="100%" height="100%" style="border:1px solid; background:#fff;"></svg>
+		</div>
+    </body> 
+</html>
