@@ -44,7 +44,7 @@ function go(depth){
 }
 function exec(){
 	var Iterations = document.getElementById("Iterations").value;//6
-	var Constants = document.getElementById("Constants").value;
+	var Alphabet = document.getElementById("Alphabet").value;
 	var Angle = document.getElementById("Angle").value;//60
 	var Axoim = document.getElementById("Axoim").value;//A
 	Rule1 = document.getElementById("Rule1").value;//A=B-A-B
@@ -79,8 +79,8 @@ function exec(){
 		}
 		else{
 			let flag = false;
-			for(j=0; j < Constants.length; j++){
-				if(List[i] == Constants[j]){
+			for(j=0; j < Alphabet.length; j++){
+				if(List[i] == Alphabet[j]){
 					flag = true;
 				}
 			}
@@ -97,10 +97,6 @@ function exec(){
 	.attr("fill",turtle.getPathAttributes().fill);
 	var path = document.querySelector("#path1");
 	var obbox = path.getBBox();
-	console.log(obbox.x);
-	console.log(obbox.y);
-	console.log(obbox.width);
-	console.log(obbox.height);
 	d3.select("svg")
 	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
 	.attr("preserveAspectRatio","xMinYMin meet");
