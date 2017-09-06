@@ -6,6 +6,10 @@
 var List="";
 var Rule1="";
 var Rule2="";
+var Rule3="";
+var Rule4="";
+var Rule5="";
+var Rule6="";
 var stack=[];
 function go(depth){
 	var List2 = "";
@@ -24,6 +28,22 @@ function go(depth){
 			else if(List[i] == Rule2.substr(0,1) )
 			{
 				List2 = List2 + Rule2.substr(2,Rule2.length);
+			}
+			else if(List[i] == Rule3.substr(0,1) )
+			{
+				List2 = List2 + Rule3.substr(2,Rule3.length);
+			}
+			else if(List[i] == Rule4.substr(0,1) )
+			{
+				List2 = List2 + Rule4.substr(2,Rule4.length);
+			}
+			else if(List[i] == Rule5.substr(0,1) )
+			{
+				List2 = List2 + Rule5.substr(2,Rule5.length);
+			}
+			else if(List[i] == Rule6.substr(0,1) )
+			{
+				List2 = List2 + Rule6.substr(2,Rule6.length);
 			}
 			else if(List[i] == "+")
 			{
@@ -49,6 +69,10 @@ function exec(){
 	var Axoim = document.getElementById("Axoim").value;//A
 	Rule1 = document.getElementById("Rule1").value;//A=B-A-B
 	Rule2 = document.getElementById("Rule2").value;//B=A+B+A
+	Rule3 = document.getElementById("Rule3").value;
+	Rule4 = document.getElementById("Rule4").value;
+	Rule5 = document.getElementById("Rule5").value;
+	Rule6 = document.getElementById("Rule6").value;
 	List = Axoim;
 	go(Iterations);
 	
@@ -57,10 +81,10 @@ function exec(){
 	var turtle = new Turtle();
 	//turtle.path = "M 100 100"
 	for(i=0;i<List.length;i++){
-		if(List[i] == '+'){
+		if(List[i] == '-'){
 			turtle.turn(parseFloat(Angle));
 		}
-		else if(List[i] == '-')
+		else if(List[i] == '+')
 		{
 			turtle.turn(parseFloat(Angle)*-1);
 		}
