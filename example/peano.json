@@ -1,0 +1,12 @@
+{
+"Iterations":1,
+"Angle":90,
+"Alphabet":"LR",
+"Axoim":"X",
+"Rule1":"L=LFRFL-F-RFLFR+F+LFRFL",
+"Rule2":"R=RFLFR+F+LFRFL-F-RFLFR",
+"Rule3":"",
+"Rule4":"",
+"Rule5":"",
+"Rule6":""
+}
