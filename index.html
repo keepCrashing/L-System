@@ -1,109 +1,84 @@
+<!DOCTYPE html>
 <html> 
   <head> 
         <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta property="og:title" content="" >
+		<meta property="og:url" content="">
+		<meta property="og:image" content="">
+		<meta property="og:description" content="" >
+		<!-- Bootstrap core JavaScript -->
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/popper.min.js"></script>
+		<script src="./js/bootstrap.min.js"></script>
+		
 		<script src="./js/d3.v4.min.js" charset="utf-8"></script>
 		<script src="./js/vector1.js" charset="utf-8"></script> 
 		<script src="./js/Turtle.js" charset="utf-8"></script> 
 		<script src="./js/code.js" charset="utf-8"></script> 
         <title>L-System</title> 
+		<!-- Bootstrap core CSS -->
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="./css/simple-sidebar.css" rel="stylesheet">
   </head> 
     <body> 
-		<div>
-			<table>
-				<tr>
-					<td>
-					<input type="file" name="importJson" id="importJson" accept="json">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Iterations:
-					</td>
-					<td>
-						<input type="text" name="Iterations" id="Iterations" value="">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Angle:
-					</td>
-					<td>
-						<input type="text" name="Angle" id="Angle" value="">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Alphabet:
-					</td>
-					<td>
-						<input type="text" name="Alphabet" id="Alphabet" value="">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Axoim:
-					</td>
-					<td>
-						<input type="text" name="Axoim" id="Axoim" value="">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule1:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule1"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule2:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule2"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule3:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule3"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule4:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule4"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule5:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule5"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Rule6:
-					</td>
-					<td>
-						<textarea rows="2" cols="50" id="Rule6"></textarea>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button type="button" onclick=exec()>Start</button>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<div>
-			<svg width="100%" height="100%" style="border:1px solid; background:#fff;"></svg>
-		</div>
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+			<div class="Data-Content">
+				<div class="Data-Title">
+					<div class="AlignRight">
+						<label class="formfield" for="Iterations">Iterations</label><br />
+						<label class="formfield" for="Angle">Angle</label><br />
+						<label class="formfield" for="Alphabet">Alphabet</label><br />
+						<label class="formfield" for="Axoim">Axoim</label><br />
+						<label class="formfield" for="Rule1">Rule1</label><br />
+						<label class="formfield" for="Rule2">Rule2</label><br />
+						<label class="formfield" for="Rule3">Rule3</label><br />
+						<label class="formfield" for="Rule4">Rule4</label><br />
+						<label class="formfield" for="Rule5">Rule5</label><br />
+						<label class="formfield" for="Rule6">Rule6</label><br />
+						<input type="button" onclick=exec() class="btn btn-primary" value="Start" />
+					</div>
+				</div>
+				<div class="Data-Items">
+					<textarea rows="1" cols="40" id="Iterations"></textarea>
+					<textarea rows="1" cols="40" id="Angle"></textarea>
+					<textarea rows="1" cols="40" id="Alphabet"></textarea>
+					<textarea rows="1" cols="40" id="Axoim"></textarea>
+					<textarea rows="1" cols="40" id="Rule1"></textarea>
+					<textarea rows="1" cols="40" id="Rule2"></textarea>
+					<textarea rows="1" cols="40" id="Rule3"></textarea>
+					<textarea rows="1" cols="40" id="Rule4"></textarea>
+					<textarea rows="1" cols="40" id="Rule5"></textarea>
+					<textarea rows="1" cols="40" id="Rule6"></textarea>
+				</div>
+			</div>
+        </div>
+		
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle"><</a>
+				<svg width="100%" height="95%" style="border:1px solid; background:#fff;"></svg>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+		<!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     </body> 
 </html>

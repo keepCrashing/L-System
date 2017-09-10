@@ -1,0 +1,175 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+html {
+    height: 100%;
+}
+body {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  height: 100%;
+}
+
+#wrapper.toggled {
+  padding-left: 450px;
+	height: 100%;
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 450;
+  width: 0;
+  height: 100%;
+  margin-left: -450px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  width: 450px;
+	height: 100%;
+}
+
+#page-content-wrapper {
+  width: 100%;
+ 	height: 100%;
+  position: absolute;
+  padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -450px;
+ 	height: 100%;
+}
+
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 450px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+
+.sidebar-nav li label {
+  color: #fff;
+  text-align: right;
+}
+
+
+.sidebar-nav li input[type="text"] {
+	width: 25%;
+	margin-left: 50px;
+}
+
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+  text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+  color: #999999;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+  color: #f00;
+  background: none;
+}
+    .Data-Content {
+        width: 100%; /* 表單寬度 */
+        line-height: 40px;
+    }
+
+    .Data-Title {
+        float: left;
+        width: 25%; /* Label寬度，視情況調整 */
+        margin-right: 20px;
+
+    }
+
+    .Data-Items {
+		margin-top: 40px;
+        float: left;
+  		height: 25%;
+		width: 25%;
+    }
+
+    .AlignRight {
+		margin-top: 20px;
+		color: #fff;
+        text-align: right;
+    }
+	.formfield{
+		margin-top: 13px;
+	}
+	.container-fluid{
+	height: 100%;
+}
+.container-fluid{
+	height: 100%;
+}
+.black-background {background-color:#000000;}
+.white {color:#ffffff;}
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 450px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 450px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
