@@ -60,6 +60,16 @@ body {
 
 
 /* Sidebar Styles */
+.gg table{
+	margin: 20px;
+	float:right;
+}
+.gg table tr td{
+	align: center;
+}
+.gg table tr td label{
+	color: #fff;
+}
 
 .sidebar-nav {
   position: absolute;
