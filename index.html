@@ -18,6 +18,61 @@
 		<script src="./js/vector1.js" charset="utf-8"></script> 
 		<script src="./js/Turtle.js" charset="utf-8"></script> 
 		<script src="./js/code.js" charset="utf-8"></script> 
+		<script type="text/javascript">
+		function FileViewer(args) {
+			for (var p in args)
+				this[p] = args[p];
+
+			this.reader = new FileReader();
+
+			this.reader.onloadend = (function(self) {
+				return function() {
+							self.loaded();
+						}
+			})(this);
+		}
+		FileViewer.prototype.load = function() {
+			this.file = this.controller.files[0];
+			this.reader.readAsText(this.file);
+		}
+		FileViewer.prototype.loaded = function() {
+			console.log(this.reader.result);
+			var mydata = JSON.parse(this.reader.result);
+			this.Iterations.value = mydata.Iterations;
+			this.Angle.value = mydata.Angle;
+			this.Alphabet.value = mydata.Alphabet;
+			this.Axoim.value = mydata.Axoim;
+			
+			this.Rule1.value = mydata.Rule1;
+			this.Rule2.value = mydata.Rule2;
+			this.Rule3.value = mydata.Rule3;
+			this.Rule4.value = mydata.Rule4;
+			this.Rule5.value = mydata.Rule5;
+			this.Rule6.value = mydata.Rule6;
+			
+		}
+
+		var file_viewer = undefined;
+
+		function init() {
+			file_viewer = new FileViewer(
+				{
+					controller: document.getElementById('Loadjson'),
+					
+					Iterations: document.getElementById('Iterations'),
+					Angle: document.getElementById('Angle'),
+					Alphabet: document.getElementById('Alphabet'),
+					Axoim: document.getElementById('Axoim'),
+					Rule1: document.getElementById('Rule1'),
+					Rule2: document.getElementById('Rule2'),
+					Rule3: document.getElementById('Rule3'),
+					Rule4: document.getElementById('Rule4'),
+					Rule5: document.getElementById('Rule5'),
+					Rule6: document.getElementById('Rule6')
+				}
+			);
+		}
+		</script>
         <title>L-System</title> 
 		<!-- Bootstrap core CSS -->
 		<link href="./css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +80,7 @@
 		<!-- Custom styles for this template -->
 		<link href="./css/simple-sidebar.css" rel="stylesheet">
   </head> 
-    <body> 
+    <body onload="init();"> 
     <div id="wrapper">
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
@@ -61,6 +116,15 @@
 			</div> -->
 			<div class = "gg">
 				<table class = "gg">
+					<tr>
+						<td>
+							<label for="Loadjson">Loadjson</label>
+						</td>
+						<td>
+							<input type="file" id="Loadjson" name="Loadjson" 
+							accept=".json" style="color:#fff;" onchange="file_viewer.load();">
+						</td>
+					</tr>
 					<tr>
 						<td>
 							<label for="Iterations">Iterations</label>
