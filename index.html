@@ -73,17 +73,6 @@
 			);
 		}
 		function jsonDownload(){
-			var Iterations = $('#Iterations')[0];
-			var Angle = $('#Angle')[0];
-			var Alphabet = $('#Alphabet')[0];
-			var Axoim = $('#Axoim')[0];
-			var Rule1 = $('#Rule1')[0];
-			var Rule2 = $('#Rule2')[0];
-			var Rule3 = $('#Rule3')[0];
-			var Rule4 = $('#Rule4')[0];
-			var Rule5 = $('#Rule5')[0];
-			var Rule6 = $('#Rule6')[0];
-			console.log($('#Iterations')[0].value);
 			var obj = {
 					"Iterations": $('#Iterations')[0].value,
 					"Angle": $('#Angle')[0].value,
@@ -101,6 +90,7 @@
 			a.href = 'data:' + data;
 			a.download = 'data.json';
 			a.innerHTML = 'download JSON';
+			$('#container').empty();
 			var container = document.getElementById('container');
 			container.appendChild(a);
 
