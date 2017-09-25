@@ -84,18 +84,26 @@
 			var Rule5 = $('#Rule5')[0];
 			var Rule6 = $('#Rule6')[0];
 			console.log($('#Iterations')[0].value);
-			var data = {
-					Iterations: $('#Iterations')[0].value,
-					Angle: $('#Angle')[0].value,
-					Alphabet: $('#Alphabet')[0].value,
-					Axoim: $('#Axoim')[0].value,
-					Rule1: $('#Rule1')[0].value,
-					Rule2: $('#Rule2')[0].value,
-					Rule3: $('#Rule3')[0].value,
-					Rule4: $('#Rule4')[0].value,
-					Rule5: $('#Rule5')[0].value,
-					Rule6: $('#Rule6')[0].value
+			var obj = {
+					"Iterations": $('#Iterations')[0].value,
+					"Angle": $('#Angle')[0].value,
+					"Alphabet": $('#Alphabet')[0].value,
+					"Axoim": $('#Axoim')[0].value,
+					"Rule1": $('#Rule1')[0].value,
+					"Rule2": $('#Rule2')[0].value,
+					"Rule3": $('#Rule3')[0].value,
+					"Rule4": $('#Rule4')[0].value,
+					"Rule5": $('#Rule5')[0].value,
+					"Rule6": $('#Rule6')[0].value
 			}
+			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
+			var a = document.createElement('a');
+			a.href = 'data:' + data;
+			a.download = 'data.json';
+			a.innerHTML = 'download JSON';
+			var container = document.getElementById('container');
+			container.appendChild(a);
+
 		}
 		</script>
         <title>L-System</title> 
@@ -231,15 +239,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td><input type="button" onclick=jsonDownload() class="btn btn-primary" value="json" />
+						<td><input type="button" onclick="exec(); jsonDownload();" class="btn btn-primary" value="Start" />
 						</td>
 						<td>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="button" onclick=exec() class="btn btn-primary" value="Start" />
-						</td>
-						<td>
+							<div id = "container">
+							</div>>
 						</td>
 					</tr>
 				</table>
