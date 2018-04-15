@@ -109,7 +109,7 @@ function exec(){
 				}
 			}
 			if(flag == false){
-				turtle.move(20);
+				turtle.move(18);
 			}
 		}
 	}
