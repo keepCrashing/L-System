@@ -31,6 +31,8 @@ Turtle.prototype.moveTo = function(x,y,angle){
 	this.x = x;
 	this.y = y;
 	this.angle = angle;
+	this.pointList.push(new Points("M",this.x,this.y));
+
 }
 Turtle.prototype.getPathAttributes = function(){
 	return{

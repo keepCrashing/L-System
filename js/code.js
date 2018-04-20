@@ -120,15 +120,20 @@ function exec(){
 	.attr("d",turtle.getPathAttributes().d)
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
-	d3.select("svg")
+	let thickness = new Thickness(turtle.getPointList());
+	thickness.exec("blue",5,135);
+	thickness.exec("yellow",5,135);
+	thickness.exec("green",5,135);
+
+	/*d3.select("svg")
 	.append("g")
 	
 	for(i = 0; i < turtle.getPointList().length-1;i+=1){
-		console.log(turtle.getPointList()[i].x, turtle.getPointList()[i].y);
+		console.log(turtle.getPointList()[i]);
 		let p1 = new Points (Object,turtle.getPointList()[i].x, turtle.getPointList()[i].y);
 		let p2 = new Points (Object,turtle.getPointList()[i+1].x, turtle.getPointList()[i+1].y);
 		let np1 = new Points (Object,p1.x+Math.cos(135*Math.PI/180)*5,p1.y+Math.sin(135*Math.PI/180)*5);
-		let np2 = new Points (Object,p2.x+Math.cos(135*Math.PI/180)*5,p2.y+Math.sin(135*Math.PI/180)*5);
+		let np2 = new Points (Object,p2.x+Math.cos(135*Math.PI/180)*5,p2.y+Math.sin(135*Math.PI/180)*);
 		//console.log(p1);
 		//console.log(p1.y);
 		//console.log(np1.x);
@@ -148,7 +153,7 @@ function exec(){
 				console.log(this.stroke);
 			}
 		});
-	}
+	}*/
 	var g = document.querySelector("g");
 	var obbox = g.getBBox();
 	d3.select("svg")
