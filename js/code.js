@@ -121,9 +121,9 @@ function exec(){
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
 	let thickness = new Thickness(turtle.getPointList());
-	thickness.exec("blue",5,135);
-	thickness.exec("yellow",5,135);
-	thickness.exec("green",5,135);
+	thickness.exec("blue",5,-45);
+	thickness.exec("yellow",5,-45);
+	thickness.exec("green",5,-45);
 
 	/*d3.select("svg")
 	.append("g")
