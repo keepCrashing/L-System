@@ -4,6 +4,7 @@ function Turtle(){
 	this.angle = 0;
 	this.draw = true;
 	this.path = "M 0 0";
+	this.pointList = [new Points("M",0,0)];
 }
 Turtle.prototype.penUp = function(){
 	this.draw = false;
@@ -23,6 +24,7 @@ Turtle.prototype.move = function(distance){
 	this.x = this.x + offset.x;
 	this.y = this.y + offset.y;
 	this.path += this.x + " " + this.y + " ";
+	this.pointList.push(new Points("L",this.x,this.y));
 }
 Turtle.prototype.moveTo = function(x,y,angle){
 	this.path += "M " + x + " " + y + " ";
@@ -36,4 +38,7 @@ Turtle.prototype.getPathAttributes = function(){
 		"stroke" : "black",
 		"fill" : "none"
 	};
+}
+Turtle.prototype.getPointList = function(){
+	return this.pointList;
 }

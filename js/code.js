@@ -99,6 +99,7 @@ function exec(){
 		else if(List[i] == ']')
 		{
 			let t1 = stack.pop();
+			//turtle.penUp();
 			turtle.moveTo(t1.x,t1.y,t1.angle);
 		}
 		else{
@@ -119,8 +120,37 @@ function exec(){
 	.attr("d",turtle.getPathAttributes().d)
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
-	var path = document.querySelector("#path1");
-	var obbox = path.getBBox();
+	d3.select("svg")
+	.append("g")
+	
+	for(i = 0; i < turtle.getPointList().length-1;i+=1){
+		console.log(turtle.getPointList()[i].x, turtle.getPointList()[i].y);
+		let p1 = new Points (Object,turtle.getPointList()[i].x, turtle.getPointList()[i].y);
+		let p2 = new Points (Object,turtle.getPointList()[i+1].x, turtle.getPointList()[i+1].y);
+		let np1 = new Points (Object,p1.x+Math.cos(135*Math.PI/180)*5,p1.y+Math.sin(135*Math.PI/180)*5);
+		let np2 = new Points (Object,p2.x+Math.cos(135*Math.PI/180)*5,p2.y+Math.sin(135*Math.PI/180)*5);
+		//console.log(p1);
+		//console.log(p1.y);
+		//console.log(np1.x);
+		//console.log(np1.y);
+		d3.select("g")
+		.append("polygon")
+		.attr("id","polygon"+i)
+		.attr("points",p1.x+","+p1.y+" " + np1.x+","+np1.y+" " + np2.x+","+np2.y+" " + p2.x+","+ p2.y+" ")
+		.attr("fill","green")
+		.attr("stroke","none")
+		.on("click", function() {
+			console.log(this.id);
+			if(this.getAttribute("stroke") == 'red'){
+				this.setAttribute('stroke','none');
+			}else{
+				this.setAttribute('stroke','red');
+				console.log(this.stroke);
+			}
+		});
+	}
+	var g = document.querySelector("g");
+	var obbox = g.getBBox();
 	d3.select("svg")
 	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
 	.attr("preserveAspectRatio","xMinYMin meet");
