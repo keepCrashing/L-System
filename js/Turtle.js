@@ -4,7 +4,7 @@ function Turtle(){
 	this.angle = 0;
 	this.draw = true;
 	this.path = "M 0 0";
-	this.pointList = [new Points("M",0,0)];
+	this.pointList = [new Points(Object,0,0)];
 }
 Turtle.prototype.penUp = function(){
 	this.draw = false;

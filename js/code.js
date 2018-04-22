@@ -110,7 +110,7 @@ function exec(){
 				}
 			}
 			if(flag == false){
-				turtle.move(18);
+				turtle.move(15);
 			}
 		}
 	}
@@ -121,9 +121,9 @@ function exec(){
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
 	let thickness = new Thickness(turtle.getPointList());
-	thickness.exec("blue",5,-45);
-	thickness.exec("yellow",5,-45);
-	thickness.exec("green",5,-45);
+	thickness.exec("#1F1B3D",5,-45);
+	thickness.exec("#2C2D86",5,-45);
+	thickness.exec("#97AECF",5,-45);
 
 	/*d3.select("svg")
 	.append("g")
