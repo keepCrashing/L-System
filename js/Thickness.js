@@ -3,7 +3,8 @@ function Thickness(pointList){
 	this.color = "none";
 	this.thickness = 0;
 	this.angle = 135;
-
+	this.count = 0;
+	this.polygonList = [];
 }
 Thickness.prototype.exec = function(color,thickness,angle){
 	let npointList = [];
@@ -16,7 +17,7 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		let np2 = new Points (Object,p2.x+Math.cos(angle*Math.PI/180)*thickness,p2.y+Math.sin(angle*Math.PI/180)*thickness);
 		d3.select("g")
 		.append("polygon")
-		.attr("id","polygon"+i)
+		.attr("id","polygon"+this.count)
 		.attr("points",p1.x+","+p1.y+" " + np1.x+","+np1.y+" " + np2.x+","+np2.y+" " + p2.x+","+ p2.y+" ")
 		.attr("fill",color)
 		.attr("stroke","none")
@@ -26,11 +27,27 @@ Thickness.prototype.exec = function(color,thickness,angle){
 				this.setAttribute('stroke','none');
 			}else{
 				this.setAttribute('stroke','red');
-				console.log(this.stroke);
 			}
+			/*d3.select(this)
+			.attr("stroke",function(){
+				if(this.getAttribute("stroke") == "red"){
+					return "none";
+				}else{
+					return "red";
+				}
+			});*/
+		})
+		.on("mouseover", function(){
+			d3.select(this)
+			.text(function(){return this.id});
+			//console.log(this.id);
+
 		});
+		this.count++;
 		npointList.push(np1);
-		npointList.push(np2);
+		if(i==this.pointList.length-2){
+			npointList.push(np2);
+		}
 	}
 	this.pointList = npointList;
 }
