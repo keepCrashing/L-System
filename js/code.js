@@ -126,36 +126,17 @@ function exec(){
 	thickness.exec("#1F1B3D",5,-45);
 	thickness.exec("#2C2D86",5,-45);
 	thickness.exec("#97AECF",5,-45);
-	//polygonList = thickness.getPolygonList();
-	/*d3.select("svg")
-	.append("g")
-	
-	for(i = 0; i < turtle.getPointList().length-1;i+=1){
-		console.log(turtle.getPointList()[i]);
-		let p1 = new Points (Object,turtle.getPointList()[i].x, turtle.getPointList()[i].y);
-		let p2 = new Points (Object,turtle.getPointList()[i+1].x, turtle.getPointList()[i+1].y);
-		let np1 = new Points (Object,p1.x+Math.cos(135*Math.PI/180)*5,p1.y+Math.sin(135*Math.PI/180)*5);
-		let np2 = new Points (Object,p2.x+Math.cos(135*Math.PI/180)*5,p2.y+Math.sin(135*Math.PI/180)*);
-		//console.log(p1);
-		//console.log(p1.y);
-		//console.log(np1.x);
-		//console.log(np1.y);
-		d3.select("g")
-		.append("polygon")
-		.attr("id","polygon"+i)
-		.attr("points",p1.x+","+p1.y+" " + np1.x+","+np1.y+" " + np2.x+","+np2.y+" " + p2.x+","+ p2.y+" ")
-		.attr("fill","green")
-		.attr("stroke","none")
+	d3.selectAll("polygon")
 		.on("click", function() {
-			console.log(this.id);
 			if(this.getAttribute("stroke") == 'red'){
 				this.setAttribute('stroke','none');
+				let index = polygonList.indexOf(this.id);
+				polygonList.splice(index,1);
 			}else{
 				this.setAttribute('stroke','red');
-				console.log(this.stroke);
+				polygonList.push(this.id);
 			}
 		});
-	}*/
 	var g = document.querySelector("g");
 	var obbox = g.getBBox();
 	d3.select("svg")
@@ -163,6 +144,7 @@ function exec(){
 	.attr("preserveAspectRatio","xMinYMin meet");
 	d3.select("#btnColorChanging")
 	.attr("onclick","changeColor(); svgDownload();");
+
 }
 
 function changeColor(){
@@ -170,11 +152,10 @@ function changeColor(){
 	//let x = d3.select("#colorChanging").attr("value");
 
 	console.log(x);
-	for(i = 0; i < thickness.getPolygonList().length; i++){
-		d3.select("#" + thickness.getPolygonList()[i])
+	for(i = 0; i < polygonList.length; i++){
+		d3.select("#" + polygonList[i])
 		.attr("fill",x)
 		.attr("stroke","none");
 	}
-	//polygonList = [];
-	//thickness.clearPolygonList();
+	polygonList = [];
 }

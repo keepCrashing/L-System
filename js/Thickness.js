@@ -4,11 +4,11 @@ function Thickness(pointList){
 	this.thickness = 0;
 	this.angle = 135;
 	this.count = 0;
-	this.polygonList = [];
+	//this.polygonList = [];
 }
 Thickness.prototype.exec = function(color,thickness,angle){
 	let npointList = [];
-	let npolygonList = this.polygonList;
+	//let npolygonList = this.polygonList;
 	d3.select("svg")
 	.append("g");
 	for(i = 0; i < this.pointList.length-1;i+=1){
@@ -21,33 +21,7 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		.attr("id","polygon"+this.count)
 		.attr("points",p1.x+","+p1.y+" " + np1.x+","+np1.y+" " + np2.x+","+np2.y+" " + p2.x+","+ p2.y+" ")
 		.attr("fill",color)
-		.attr("stroke","none")
-		.on("click", function() {
-			if(this.getAttribute("stroke") == 'red'){
-				this.setAttribute('stroke','none');
-				let index = npolygonList.indexOf(this.id);
-				npolygonList.splice(index,1);
-				console.log('del   '+npolygonList);
-			}else{
-				this.setAttribute('stroke','red');
-				npolygonList.push(this.id);
-				console.log('add   '+npolygonList);
-			}
-			/*d3.select(this)
-			.attr("stroke",function(){
-				if(this.getAttribute("stroke") == "red"){
-					return "none";
-				}else{
-					return "red";
-				}
-			});*/
-		})
-		.on("mouseover", function(){
-			d3.select(this)
-			.text(function(){return this.id});
-			//console.log(this.id);
-
-		});
+		.attr("stroke","none");
 		this.count++;
 		npointList.push(np1);
 		if(i==this.pointList.length-2){
@@ -55,12 +29,5 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		}
 	}
 	this.pointList = npointList;
-	this.polygonList = npolygonList;
-}
-Thickness.prototype.getPolygonList = function(){
-	return this.polygonList;
-}
-Thickness.prototype.clearPolygonList = function(){
-	this.polygonList = [];
-	console.log("clear "+this.polygonList);
+	//this.polygonList = npolygonList;
 }
