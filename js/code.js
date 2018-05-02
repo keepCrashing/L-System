@@ -11,7 +11,6 @@ var Rule4="";
 var Rule5="";
 var Rule6="";
 var stack=[];
-var thickness;
 var polygonList=[];
 function go(depth){
 	var List2 = "";
@@ -122,7 +121,7 @@ function exec(){
 	.attr("d",turtle.getPathAttributes().d)
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
-	thickness = new Thickness(turtle.getPointList());
+	var thickness = new Thickness(turtle.getPointList());
 	thickness.exec("#1F1B3D",5,-45);
 	thickness.exec("#2C2D86",5,-45);
 	thickness.exec("#97AECF",5,-45);
