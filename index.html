@@ -245,8 +245,8 @@
 							<label>Colors</label>
 						</td>					
 						<td>
-  							<input type="color" name="favcolor" value="#000000">
-  							<input type="button" onclick="" class="btn btn-info btn-sm" value="Submit" />
+  							<input type="color" id="colorChanging">
+  							<input type="button" id="btnColorChanging" class="btn btn-info btn-sm" value="Submit" />
 						</td>
 					</tr>
 					<tr>
@@ -277,6 +277,7 @@
     <!-- /#wrapper -->
 		<!-- Menu Toggle Script -->
     <script>
+
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");

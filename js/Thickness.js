@@ -8,6 +8,7 @@ function Thickness(pointList){
 }
 Thickness.prototype.exec = function(color,thickness,angle){
 	let npointList = [];
+	let npolygonList = this.polygonList;
 	d3.select("svg")
 	.append("g");
 	for(i = 0; i < this.pointList.length-1;i+=1){
@@ -22,11 +23,15 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		.attr("fill",color)
 		.attr("stroke","none")
 		.on("click", function() {
-			console.log(this.id);
 			if(this.getAttribute("stroke") == 'red'){
 				this.setAttribute('stroke','none');
+				let index = npolygonList.indexOf(this.id);
+				npolygonList.splice(index,1);
+				console.log('del   '+npolygonList);
 			}else{
 				this.setAttribute('stroke','red');
+				npolygonList.push(this.id);
+				console.log('add   '+npolygonList);
 			}
 			/*d3.select(this)
 			.attr("stroke",function(){
@@ -50,4 +55,12 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		}
 	}
 	this.pointList = npointList;
+	this.polygonList = npolygonList;
+}
+Thickness.prototype.getPolygonList = function(){
+	return this.polygonList;
+}
+Thickness.prototype.clearPolygonList = function(){
+	this.polygonList = [];
+	console.log("clear "+this.polygonList);
 }

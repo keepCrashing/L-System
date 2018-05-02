@@ -11,6 +11,8 @@ var Rule4="";
 var Rule5="";
 var Rule6="";
 var stack=[];
+var thickness;
+var polygonList=[];
 function go(depth){
 	var List2 = "";
 	if(depth == 0)
@@ -120,11 +122,11 @@ function exec(){
 	.attr("d",turtle.getPathAttributes().d)
 	.attr("stroke",turtle.getPathAttributes().stroke)
 	.attr("fill",turtle.getPathAttributes().fill);
-	let thickness = new Thickness(turtle.getPointList());
+	thickness = new Thickness(turtle.getPointList());
 	thickness.exec("#1F1B3D",5,-45);
 	thickness.exec("#2C2D86",5,-45);
 	thickness.exec("#97AECF",5,-45);
-
+	//polygonList = thickness.getPolygonList();
 	/*d3.select("svg")
 	.append("g")
 	
@@ -159,4 +161,20 @@ function exec(){
 	d3.select("svg")
 	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
 	.attr("preserveAspectRatio","xMinYMin meet");
+	d3.select("#btnColorChanging")
+	.attr("onclick","changeColor(); svgDownload();");
+}
+
+function changeColor(){
+	var x = document.getElementById("colorChanging").value;
+	//let x = d3.select("#colorChanging").attr("value");
+
+	console.log(x);
+	for(i = 0; i < thickness.getPolygonList().length; i++){
+		d3.select("#" + thickness.getPolygonList()[i])
+		.attr("fill",x)
+		.attr("stroke","none");
+	}
+	//polygonList = [];
+	//thickness.clearPolygonList();
 }
