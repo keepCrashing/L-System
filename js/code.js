@@ -120,15 +120,38 @@ function exec(){
 	.attr("id","path1")
 	.attr("d",turtle.getPathAttributes().d)
 	.attr("stroke",turtle.getPathAttributes().stroke)
-	.attr("fill",turtle.getPathAttributes().fill);
+	.attr("fill",turtle.getPathAttributes().fill)
+	.attr("stroke-linecap",turtle.getPathAttributes().strokeLinecap)
+	.attr("stroke-linejoin",turtle.getPathAttributes().strokeLinejoin);
+	d3.select("svg")
+	.append("g")
+	.attr("id","gMain");
 	var thickness = new Thickness(turtle.getPointList());
-	thickness.exec("#1F1B3D",5,-45);
-	thickness.exec("#2C2D86",5,-45);
-	thickness.exec("#97AECF",5,-45);
+	thickness.exec("#1F1B3D",5, -45);
+	thickness.exec("#2C2D86",5, -45);
+	thickness.exec("#97AECF",5, -45);
+	//thickness.exec("#97AECF",5, 135);
+	//thickness.exec("#2C2D86",5, 135);
+	//thickness.exec("#1F1B3D",5, 135);
+	d3.select("svg")
+	.append("path")
+	.attr("id","path2")
+	.attr("d",function(){
+		let ret = "";
+		ret = "M " + thickness.pointList[0].x + " " + thickness.pointList[0].y;
+		for(i = 1; i < thickness.pointList.length; i++){
+			ret += "L " + thickness.pointList[i].x + " " + thickness.pointList[i].y;
+		}
+		return ret;
+	})
+	.attr("stroke",turtle.getPathAttributes().stroke)
+	.attr("fill",turtle.getPathAttributes().fill)
+	.attr("stroke-linecap",turtle.getPathAttributes().strokeLinecap)
+	.attr("stroke-linejoin",turtle.getPathAttributes().strokeLinejoin);
 	d3.selectAll("polygon")
 		.on("click", function() {
 			if(this.getAttribute("stroke") == 'red'){
-				this.setAttribute('stroke','none');
+				this.setAttribute('stroke',this.getAttribute("fill"));
 				let index = polygonList.indexOf(this.id);
 				polygonList.splice(index,1);
 			}else{
@@ -136,7 +159,7 @@ function exec(){
 				polygonList.push(this.id);
 			}
 		});
-	var g = document.querySelector("g");
+	var g = document.querySelector("#gMain");
 	var obbox = g.getBBox();
 	d3.select("svg")
 	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
@@ -154,7 +177,7 @@ function changeColor(){
 	for(i = 0; i < polygonList.length; i++){
 		d3.select("#" + polygonList[i])
 		.attr("fill",x)
-		.attr("stroke","none");
+		.attr("stroke",x);
 	}
 	polygonList = [];
 }

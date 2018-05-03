@@ -38,7 +38,9 @@ Turtle.prototype.getPathAttributes = function(){
 	return{
 		"d" : this.path,
 		"stroke" : "black",
-		"fill" : "none"
+		"fill" : "none",
+		"strokeLinecap" : "round",
+		"strokeLinejoin" : "round"
 	};
 }
 Turtle.prototype.getPointList = function(){
