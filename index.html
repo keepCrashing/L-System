@@ -51,6 +51,7 @@
 			this.Rule4.value = mydata.Rule4;
 			this.Rule5.value = mydata.Rule5;
 			this.Rule6.value = mydata.Rule6;
+			this.PolygonAngle.value = mydata.PolygonAngle;
 			this.colorLayer1.value = mydata.Layer1.Color;
 			this.colorLayer2.value = mydata.Layer2.Color;
 			this.colorLayer3.value = mydata.Layer3.Color;
@@ -75,6 +76,7 @@
 					Rule4: document.getElementById('Rule4'),
 					Rule5: document.getElementById('Rule5'),
 					Rule6: document.getElementById('Rule6'),
+					PolygonAngle: document.getElementById('PolygonAngle'),
 					colorLayer1: document.getElementById('colorLayer1'),
 					colorLayer2: document.getElementById('colorLayer2'),
 					colorLayer3: document.getElementById('colorLayer3')
@@ -94,6 +96,7 @@
 					"Rule4": $('#Rule4')[0].value,
 					"Rule5": $('#Rule5')[0].value,
 					"Rule6": $('#Rule6')[0].value,
+					"PolygonAngle": $('#PolygonAngle')[0].value,
 					"Layer1": {"Color": $('#colorLayer1')[0].value},
 					"Layer2": {"Color": $('#colorLayer2')[0].value},
 					"Layer3": {"Color": $('#colorLayer3')[0].value}
@@ -253,7 +256,7 @@
 					</tr>
 					<tr>
 						<td>
-							<label for="PolygonAngle">pAngle</label>
+							<label for="PolygonAngle">Ploygon</br>Angle</label>
 						</td>
 						<td>
 							<input type="text" name="PolygonAngle" id="PolygonAngle" value="225">
