@@ -1,12 +1,1 @@
-{
-"Iterations":5,
-"Angle":36,
-"Alphabet":"MNOP",
-"Axoim":"[N]++[N]++[N]++[N]++[N]",
-"Rule1":"M=OA++PA----NA[-OA----MA]++",
-"Rule2":"N=+OA--PA[---MA--NA]+",
-"Rule3":"O=-MA++NA[+++OA++PA]-",
-"Rule4":"P=--OA++++MA[+PA++++NA]--NA",
-"Rule5":"A=",
-"Rule6":""
-}
+{"Iterations":"5","Angle":"36","Alphabet":"MNOP","Axoim":"[N]++[N]++[N]++[N]++[N]","Rule1":"M=OA++PA----NA[-OA----MA]++","Rule2":"N=+OA--PA[---MA--NA]+","Rule3":"O=-MA++NA[+++OA++PA]-","Rule4":"P=--OA++++MA[+PA++++NA]--NA","Rule5":"A=","Rule6":"","PolygonAngle":"315","Layer1":{"Color":"#ff80c0"},"Layer2":{"Color":"#c0c0c0"},"Layer3":{"Color":"#ff80c0"}}

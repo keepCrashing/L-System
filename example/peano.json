@@ -1,12 +1,1 @@
-{
-"Iterations":3,
-"Angle":90,
-"Alphabet":"LR",
-"Axoim":"L",
-"Rule1":"L=LFRFL-F-RFLFR+F+LFRFL",
-"Rule2":"R=RFLFR+F+LFRFL-F-RFLFR",
-"Rule3":"",
-"Rule4":"",
-"Rule5":"",
-"Rule6":""
-}
+{"Iterations":"3","Angle":"90","Alphabet":"LR","Axoim":"L","Rule1":"L=LFRFL-F-RFLFR+F+LFRFL","Rule2":"R=RFLFR+F+LFRFL-F-RFLFR","Rule3":"","Rule4":"","Rule5":"","Rule6":"","PolygonAngle":"315","Layer1":{"Color":"#400080"},"Layer2":{"Color":"#cccccc"},"Layer3":{"Color":"#400080"}}
