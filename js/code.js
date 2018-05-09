@@ -127,9 +127,9 @@ function exec(){
 	.append("g")
 	.attr("id","gMain");
 	var thickness = new Thickness(turtle.getPointList());
-	thickness.exec("#1F1B3D",5, -45);
-	thickness.exec("#2C2D86",5, -45);
-	thickness.exec("#97AECF",5, -45);
+	thickness.exec(document.querySelector("#colorLayer1").value,5, document.querySelector("#PolygonAngle").value);
+	thickness.exec(document.querySelector("#colorLayer2").value,5, document.querySelector("#PolygonAngle").value);
+	thickness.exec(document.querySelector("#colorLayer3").value,5, document.querySelector("#PolygonAngle").value);
 	//thickness.exec("#97AECF",5, 135);
 	//thickness.exec("#2C2D86",5, 135);
 	//thickness.exec("#1F1B3D",5, 135);

@@ -51,6 +51,10 @@
 			this.Rule4.value = mydata.Rule4;
 			this.Rule5.value = mydata.Rule5;
 			this.Rule6.value = mydata.Rule6;
+			this.colorLayer1.value = mydata.Layer1.Color;
+			this.colorLayer2.value = mydata.Layer2.Color;
+			this.colorLayer3.value = mydata.Layer3.Color;
+
 			
 		}
 
@@ -70,7 +74,11 @@
 					Rule3: document.getElementById('Rule3'),
 					Rule4: document.getElementById('Rule4'),
 					Rule5: document.getElementById('Rule5'),
-					Rule6: document.getElementById('Rule6')
+					Rule6: document.getElementById('Rule6'),
+					colorLayer1: document.getElementById('colorLayer1'),
+					colorLayer2: document.getElementById('colorLayer2'),
+					colorLayer3: document.getElementById('colorLayer3')
+
 				}
 			);
 		}
@@ -85,7 +93,10 @@
 					"Rule3": $('#Rule3')[0].value,
 					"Rule4": $('#Rule4')[0].value,
 					"Rule5": $('#Rule5')[0].value,
-					"Rule6": $('#Rule6')[0].value
+					"Rule6": $('#Rule6')[0].value,
+					"Layer1": {"Color": $('#colorLayer1')[0].value},
+					"Layer2": {"Color": $('#colorLayer2')[0].value},
+					"Layer3": {"Color": $('#colorLayer3')[0].value}
 			}
 			var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
 			var a = document.createElement('a');
@@ -240,6 +251,38 @@
 							<textarea rows="2" cols="45" id="Rule6"></textarea>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<label for="PolygonAngle">pAngle</label>
+						</td>
+						<td>
+							<input type="text" name="PolygonAngle" id="PolygonAngle" value="225">
+						</td>
+					<tr>
+					<tr>
+						<td>
+							<label>Layer1</label>
+						</td>
+						<td>
+							<input type="color" id="colorLayer1">
+						</td>
+					<tr>
+					<tr>
+						<td>
+							<label>Layer2</label>
+						</td>
+						<td>
+							<input type="color" id="colorLayer2">
+						</td>
+					<tr>
+					<tr>
+						<td>
+							<label>Layer3</label>
+						</td>
+						<td>
+							<input type="color" id="colorLayer3">
+						</td>
+					<tr>
 					<tr>
 						<td>
 							<label>Colors</label>
