@@ -138,10 +138,12 @@ function exec(){
 	.attr("id","path2")
 	.attr("d",function(){
 		let ret = "";
-		ret = "M " + thickness.pointList[0].x + " " + thickness.pointList[0].y;
-		for(i = 1; i < thickness.pointList.length; i++){
-			ret += "L " + thickness.pointList[i].x + " " + thickness.pointList[i].y;
+		//ret = "M " + thickness.pointList[0].x + " " + thickness.pointList[0].y;
+		for(i = 0; i < thickness.pointList.length; i++){
+			//console.log(thickness.pointList[i].data);
+			ret += thickness.pointList[i].data + " " + thickness.pointList[i].x + " " + thickness.pointList[i].y;
 		}
+
 		return ret;
 	})
 	.attr("stroke",turtle.getPathAttributes().stroke)

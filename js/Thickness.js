@@ -12,10 +12,16 @@ Thickness.prototype.exec = function(color,thickness,angle){
 	.append("g")
 	.attr("id","g" + this.count);
 	for(i = 0; i < this.pointList.length-1;i+=1){
-		let p1 = new Points (Object,this.pointList[i].x, this.pointList[i].y);
-		let p2 = new Points (Object,this.pointList[i+1].x, this.pointList[i+1].y);
-		let np1 = new Points (Object,p1.x+Math.cos(angle*Math.PI/180)*thickness,p1.y+Math.sin(angle*Math.PI/180)*thickness);
-		let np2 = new Points (Object,p2.x+Math.cos(angle*Math.PI/180)*thickness,p2.y+Math.sin(angle*Math.PI/180)*thickness);
+		let p1 = new Points (this.pointList[i].data,this.pointList[i].x, this.pointList[i].y);
+		let p2 = new Points (this.pointList[i+1].data,this.pointList[i+1].x, this.pointList[i+1].y);
+		let np1 = new Points (p1.data,p1.x+Math.cos(angle*Math.PI/180)*thickness,p1.y+Math.sin(angle*Math.PI/180)*thickness);
+		let np2 = new Points (p2.data,p2.x+Math.cos(angle*Math.PI/180)*thickness,p2.y+Math.sin(angle*Math.PI/180)*thickness);
+		npointList.push(np1);
+		if(i==this.pointList.length-2){
+			npointList.push(np2);
+		}
+		if(this.pointList[i+1].data == "M")continue;
+
 		d3.select("#g"+ this.count)
 		.append("polygon")
 		.attr("id","polygon"+this.polyCount)
@@ -25,10 +31,7 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		.attr("stroke-linecap","round")
 		.attr("stroke-linejoin","round");
 		this.polyCount++;
-		npointList.push(np1);
-		if(i==this.pointList.length-2){
-			npointList.push(np2);
-		}
+
 	}
 	this.pointList = npointList;
 	this.count++;
