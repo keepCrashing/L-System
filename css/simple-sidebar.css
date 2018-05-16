@@ -62,7 +62,7 @@ body {
 /* Sidebar Styles */
 .gg table{
 	margin: 20px;
-	float:right;
+	/*float:right;*/
 }
 .gg table tr td{
 	align: center;
