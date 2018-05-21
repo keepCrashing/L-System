@@ -1,0 +1,13 @@
+html, body, form {
+    height: 100%;
+}
+#sidebar{
+    background: #000;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 20px;
+}
+.wapper label{
+    color: #fff;
+    text-align: right;
+}
