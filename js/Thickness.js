@@ -31,9 +31,7 @@ Thickness.prototype.exec = function(color,thickness,angle){
 		.attr("stroke-linecap","round")
 		.attr("stroke-linejoin","round");
 		this.polyCount++;
-
 	}
 	this.pointList = npointList;
 	this.count++;
-
 }
