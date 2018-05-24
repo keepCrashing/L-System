@@ -126,6 +126,7 @@ function exec(){
 	d3.select("svg")
 	.append("g")
 	.attr("id","gMain");
+	console.log(turtle.getPointList());
 	var thickness = new Thickness(turtle.getPointList());
 	var thicknessLayer1 = document.getElementById("thicknessLayer1").value;
 	var thicknessLayer2 = document.getElementById("thicknessLayer2").value;

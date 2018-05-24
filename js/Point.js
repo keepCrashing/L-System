@@ -1,13 +1,6 @@
-function Points(){
-	this.x = 0;
-	this.y = 0;
-}
-function Points(x,y){
-	this.x = x;
-	this.y = y;
-}
-function Points(data,x,y){
+function Points(data,x,y,angle){
 	this.data = data;
 	this.x = x;
 	this.y = y;
+	this.angle = angle;
 }

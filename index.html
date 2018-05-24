@@ -160,6 +160,7 @@
                     $('<input>')
                     .attr('type','text')
                     .attr('name','PathAngle')
+                    .attr('placeholder','PathAngle')
                     .attr('id','PathAngle'+count)
                 )
               )
@@ -179,6 +180,7 @@
                     $('<input>')
                     .attr('type','text')
                     .attr('name','PolygonAngle')
+                    .attr('placeholder','PolygonAngle')
                     .attr('id','PolygonAngle'+count)
                 )
               )
@@ -195,10 +197,25 @@
                 $('<div>')
                 .attr('class', 'col-9')
                 .append(
+                    $('<label>')
+                    .text('Color')
+                )
+                .append(
                     $('<input>')
                     .attr('type','color')
                     .attr('id','colorLayer1-'+count)
                 )
+                .append(
+                    $('<label>')
+                    .text('Thickness')
+                ) 
+                .append(
+                    $('<input>')
+                    .attr('type','text')
+                    .attr('value','5')
+                    .attr('size','2')
+                    .attr('id','Thickness1'+count)
+                )                  
               )
             )
           .append(
@@ -213,10 +230,25 @@
                 $('<div>')
                 .attr('class', 'col-9')
                 .append(
+                    $('<label>')
+                    .text('Color')
+                )
+                .append(
                     $('<input>')
                     .attr('type','color')
                     .attr('id','colorLayer2-'+count)
                 )
+                .append(
+                    $('<label>')
+                    .text('Thickness')
+                ) 
+                .append(
+                    $('<input>')
+                    .attr('type','text')
+                    .attr('value','5')
+                    .attr('size','2')
+                    .attr('id','Thickness2'+count)
+                )   
               )
             )
           .append(
@@ -231,9 +263,24 @@
                 $('<div>')
                 .attr('class', 'col-9')
                 .append(
+                    $('<label>')
+                    .text('Color')
+                )
+                .append(
                     $('<input>')
                     .attr('type','color')
                     .attr('id','colorLayer3-'+count)
+                )
+                .append(
+                    $('<label>')
+                    .text('Thickness')
+                ) 
+                .append(
+                    $('<input>')
+                    .attr('type','text')
+                    .attr('value','5')
+                    .attr('size','2')
+                    .attr('id','Thickness3'+count)
                 )
               )
             )
@@ -357,7 +404,7 @@
           </div>
           <div class="form-group row">
             <label for="Ploygon" class="col-3 col-form-label" style="color: #00FF00">Ploygon</label>
-            <div class="btn-group col-9" role="group" aria-label="Basic example">
+            <div class="btn-group col-9" role="group" aria-label="">
               <button type="button" onclick = "addPolygon()" class="btn btn-info"> + </button>
               <button type="button" id = "btnRemovePolygon" onclick = "removePolygon()" class="btn btn-info" > - </button>
               <div><span id = "polygonCount" style="visibility: hidden;">-1</span></div>
