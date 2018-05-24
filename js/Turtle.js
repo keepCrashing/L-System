@@ -37,12 +37,12 @@ Turtle.prototype.moveTo = function(x,y,angle){
 	this.x = x;
 	this.y = y;
 	this.angle = angle;
-	let angle = this.angle;
-	angle = angle % 360;
-	if(angle<0){
-		angle = angle + 360;
+	let angle1 = this.angle;
+	angle1 = angle1 % 360;
+	if(angle1<0){
+		angle1 = angle1 + 360;
 	}
-	this.pointList.push(new Points("M",this.x,this.y,angle));
+	this.pointList.push(new Points("M",this.x,this.y,angle1));
 
 }
 Turtle.prototype.getPathAttributes = function(){

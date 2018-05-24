@@ -1,1 +1,3 @@
-{"Iterations":"6","Angle":"85","Alphabet":"","Axoim":"F","Rule1":"F=F+F--F+F","Rule2":"","Rule3":"","Rule4":"","Rule5":"","Rule6":"","Polygon":{"PathAngle":"","PolygonAngle":"225","Layer1":{"Color":"#8000ff","Thickness":"5"},"Layer2":{"Color":"#ff8040","Thickness":"5"},"Layer3":{"Color":"#008040","Thickness":"5"}}}
+{"Iterations":"6","Angle":"85","Alphabet":"","Axoim":"F","Rule1":"F=F+F--F+F","Rule2":"","Rule3":"","Rule4":"","Rule5":"","Rule6":"",
+"Polygon":[{"PathAngle":"","PolygonAngle":"225","Layer1":{"Color":"#8000ff","Thickness":"5"},"Layer2":{"Color":"#ff8040","Thickness":"5"},"Layer3":{"Color":"#008040","Thickness":"5"}},{"PathAngle":"","PolygonAngle":"225","Layer1":{"Color":"#8000ff","Thickness":"5"},"Layer2":{"Color":"#ff8040","Thickness":"5"},"Layer3":{"Color":"#008040","Thickness":"5"}}]
+}

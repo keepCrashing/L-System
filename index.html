@@ -58,10 +58,25 @@
       this.Rule4.value = mydata.Rule4;
       this.Rule5.value = mydata.Rule5;
       this.Rule6.value = mydata.Rule6;
-      this.PolygonAngle.value = mydata.PolygonAngle;
-      this.colorLayer1.value = mydata.Layer1.Color;
-      this.colorLayer2.value = mydata.Layer2.Color;
-      this.colorLayer3.value = mydata.Layer3.Color;
+      //this.PolygonAngle.value = mydata.PolygonAngle;
+      //this.colorLayer1.value = mydata.Layer1.Color;
+      //this.colorLayer2.value = mydata.Layer2.Color;
+      //this.colorLayer3.value = mydata.Layer3.Color;
+      let polygonCount = parseInt( $("#polygonCount").text(), 10 );
+      for(var i = 0; i <= polygonCount; i++){
+        removePolygon();
+      }
+      for(var i = 0; i < mydata.Polygon.length; i++){
+        addPolygon();
+        $('#PathAngle'+i)[0].value = mydata.Polygon[i].PathAngle;
+        $('#PolygonAngle'+i)[0].value = mydata.Polygon[i].PolygonAngle;
+        $('#colorLayer1-'+i)[0].value = mydata.Polygon[i].Layer1.Color;
+        $('#Thickness1-'+i)[0].value = mydata.Polygon[i].Layer1.Thickness;
+        $('#colorLayer2-'+i)[0].value = mydata.Polygon[i].Layer2.Color;
+        $('#Thickness2-'+i)[0].value = mydata.Polygon[i].Layer2.Thickness;
+        $('#colorLayer3-'+i)[0].value = mydata.Polygon[i].Layer3.Color;
+        $('#Thickness3-'+i)[0].value = mydata.Polygon[i].Layer3.Thickness;
+      }
 
       exec();
       jsonDownload(); 
@@ -85,16 +100,39 @@
           Rule4: document.getElementById('Rule4'),
           Rule5: document.getElementById('Rule5'),
           Rule6: document.getElementById('Rule6'),
-          PolygonAngle: document.getElementById('PolygonAngle'),
-          colorLayer1: document.getElementById('colorLayer1'),
-          colorLayer2: document.getElementById('colorLayer2'),
-          colorLayer3: document.getElementById('colorLayer3')
+          //PolygonAngle: document.getElementById('PolygonAngle'),
+          //colorLayer1: document.getElementById('colorLayer1'),
+          //colorLayer2: document.getElementById('colorLayer2'),
+          //colorLayer3: document.getElementById('colorLayer3')
 
         }
       );
     }
     function jsonDownload(){
+      let polygonCount = parseInt( $("#polygonCount").text(), 10 );
       var obj = {
+          "Iterations": $('#Iterations')[0].value,
+          "Angle": $('#Angle')[0].value,
+          "Alphabet": $('#Alphabet')[0].value,
+          "Axoim": $('#Axoim')[0].value,
+          "Rule1": $('#Rule1')[0].value,
+          "Rule2": $('#Rule2')[0].value,
+          "Rule3": $('#Rule3')[0].value,
+          "Rule4": $('#Rule4')[0].value,
+          "Rule5": $('#Rule5')[0].value,
+          "Rule6": $('#Rule6')[0].value,
+          "Polygon" : []
+      };
+      for(var i = 0; i <= polygonCount; i++){
+        obj.Polygon.push({
+          "PathAngle": $('#PathAngle'+i)[0].value,
+          "PolygonAngle": $('#PolygonAngle'+i)[0].value,
+          "Layer1": {"Color": $('#colorLayer1-'+i)[0].value, "Thickness": $('#Thickness1-'+i)[0].value},
+          "Layer2": {"Color": $('#colorLayer2-'+i)[0].value, "Thickness": $('#Thickness2-'+i)[0].value},
+          "Layer3": {"Color": $('#colorLayer3-'+i)[0].value, "Thickness": $('#Thickness3-'+i)[0].value}
+        });
+      }
+      /*var obj = {
           "Iterations": $('#Iterations')[0].value,
           "Angle": $('#Angle')[0].value,
           "Alphabet": $('#Alphabet')[0].value,
@@ -109,7 +147,7 @@
           "Layer1": {"Color": $('#colorLayer1')[0].value},
           "Layer2": {"Color": $('#colorLayer2')[0].value},
           "Layer3": {"Color": $('#colorLayer3')[0].value}
-      }
+      }*/
       var data = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj));
       $('#jsonDownload').empty();
       $('#jsonDownload').append(
@@ -214,7 +252,7 @@
                     .attr('type','text')
                     .attr('value','5')
                     .attr('size','2')
-                    .attr('id','Thickness1'+count)
+                    .attr('id','Thickness1-'+count)
                 )                  
               )
             )
@@ -247,7 +285,7 @@
                     .attr('type','text')
                     .attr('value','5')
                     .attr('size','2')
-                    .attr('id','Thickness2'+count)
+                    .attr('id','Thickness2-'+count)
                 )   
               )
             )
@@ -280,7 +318,7 @@
                     .attr('type','text')
                     .attr('value','5')
                     .attr('size','2')
-                    .attr('id','Thickness3'+count)
+                    .attr('id','Thickness3-'+count)
                 )
               )
             )
