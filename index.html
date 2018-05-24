@@ -129,12 +129,111 @@
             .text('SVG')
         );
     }
+    function removePolygon(){
+      let count = $("#polygonCount").text();
+      $("#polygon"+count).remove();
+      subCount($("#polygonCount"));
+      if(count == "0")    document.getElementById("btnRemovePolygon").disabled = true;
+
+    }
+    function addPolygon(){
+      document.getElementById("btnRemovePolygon").disabled = false;
+
+      addCount($("#polygonCount"));
+      let count = $("#polygonCount").text();
+      $('#polygon-div')
+      .append(
+        $('<div>')
+          .attr('id', 'polygon'+count)
+          .append(
+            $('<div>')
+              .attr('class', 'form-group row')
+              .append(
+                $('<label>')
+                .attr('class','col-3 col-form-label')
+                .text('PloygonAngle')
+                )
+              .append(
+                $('<div>')
+                .attr('class', 'col-9')
+                .append(
+                    $('<input>')
+                    .attr('type','text')
+                    .attr('name','PolygonAngle')
+                    .attr('id','PolygonAngle'+count)
+                )
+              )
+            )
+          .append(
+            $('<div>')
+              .attr('class', 'form-group row')
+              .append(
+                $('<label>')
+                .attr('class','col-3 col-form-label')
+                .text('Layer1')
+                )
+              .append(
+                $('<div>')
+                .attr('class', 'col-9')
+                .append(
+                    $('<input>')
+                    .attr('type','color')
+                    .attr('id','colorLayer1-'+count)
+                )
+              )
+            )
+          .append(
+            $('<div>')
+              .attr('class', 'form-group row')
+              .append(
+                $('<label>')
+                .attr('class','col-3 col-form-label')
+                .text('Layer2')
+                )
+              .append(
+                $('<div>')
+                .attr('class', 'col-9')
+                .append(
+                    $('<input>')
+                    .attr('type','color')
+                    .attr('id','colorLayer2-'+count)
+                )
+              )
+            )
+          .append(
+            $('<div>')
+              .attr('class', 'form-group row')
+              .append(
+                $('<label>')
+                .attr('class','col-3 col-form-label')
+                .text('Layer3')
+                )
+              .append(
+                $('<div>')
+                .attr('class', 'col-9')
+                .append(
+                    $('<input>')
+                    .attr('type','color')
+                    .attr('id','colorLayer3-'+count)
+                )
+              )
+            )
+        )
+    }
+    function addCount(j) {
+      var n = parseInt( j.text(), 10 );
+      j.text( n + 1 );
+    }
+    function subCount(j) {
+      var n = parseInt( j.text(), 10 );
+      j.text( n - 1 );
+    }
     </script>
 </head>
 <body onload="init();">
-<div class="container-fluid" style="height: 100%">
-   <div class="row" style="height: 100%">
-    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-3" id ="sidebar"> 
+<div class="container-fluid h-100">
+   <div class="row h-100">
+    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-4" id ="sidebar"> 
       <form class="wapper" enctype="multipart/form-data">          
         <div class="form-group row">
           <label for="Loadjson" class="col-3 col-form-label">Loadjson</label>
@@ -167,10 +266,6 @@
               <textarea rows="1" cols="30" id="Axoim" placeholder="Axoim"></textarea>
           </div>
         </div>
-        <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapseRules" aria-expanded="true" aria-controls="collapseRules">
-          Rules
-        </button>
-        <div id="collapseRules" class="collapse show">-->
           <div class="form-group row">
             <label for="Rule1" class="col-3 col-form-label">Rule1</label>
             <div class="col-9">
@@ -207,48 +302,58 @@
               <textarea rows="1" cols="30" id="Rule6" placeholder="Rule6"></textarea>
             </div>
           </div>
-        <!--</div>-->
-        <!--<button class="btn btn-link" data-toggle="collapse" data-target="#collapsePolygon" aria-expanded="true" aria-controls="collapsePolygon">
-          Polygon
-        </button>
-        <div id="collapsePolygon" class="collapse show">-->
           <div class="form-group row">
-            <label for="PloygonAngle" class="col-3 col-form-label">Ploygon</br>Angle</label>
+            <label for="PloygonAngle" class="col-3 col-form-label">PloygonAngle</label>
             <div class="col-9">
-              <input type="text" name="PolygonAngle" id="PolygonAngle" value="225">        </div>
+              <input type="text" name="PolygonAngle" id="PolygonAngle" value="225">  
+            </div>
           </div>
           <div class="form-group row">
             <label for="Layer1" class="col-3 col-form-label">Layer1</label>
             <div class="col-9">
+              <label>Color</label>
               <input type="color" id="colorLayer1">
-              <input type="text" name="thicknessLayer1" id="thicknessLayer1" value="5">
+              <label>Thickness</label>
+              <input type="text" name="thicknessLayer1" id="thicknessLayer1" value="5" size="2">
             </div>
+
           </div>
           <div class="form-group row">
             <label for="Layer2" class="col-3 col-form-label">Layer2</label>
             <div class="col-9">
+              <label>Color</label>
               <input type="color" id="colorLayer2">
-              <input type="text" name="thicknessLayer2" id="thicknessLayer2" value="5">
+              <label>Thickness</label>
+              <input type="text" name="thicknessLayer2" id="thicknessLayer2" value="5" size="2">
             </div>
           </div>
           <div class="form-group row">
             <label for="Layer3" class="col-3 col-form-label">Layer3</label>
             <div class="col-9">
+              <label>Color</label>
               <input type="color" id="colorLayer3">
-              <input type="text" name="thicknessLayer3" id="thicknessLayer3" value="5">
+              <label>Thickness</label>
+              <input type="text" name="thicknessLayer3" id="thicknessLayer3" value="5" size="2">
             </div>
           </div>
-        <!--</div>-->
           <div class="form-group row">
-    <div class="col-3">
-<input type="button" onclick="exec(); jsonDownload(); svgDownload();" class="btn btn-primary" value="Start" />
-    </div>
-  </div>
+            <label for="Ploygon" class="col-3 col-form-label" style="color: #00FF00">Ploygon</label>
+            <div class="btn-group col-9" role="group" aria-label="Basic example">
+              <button type="button" onclick = "addPolygon()" class="btn btn-info"> + </button>
+              <button type="button" id = "btnRemovePolygon" onclick = "removePolygon()" class="btn btn-info" > - </button>
+              <div><span id = "polygonCount">-1</span></div>
+            </div>
+          </div>
+          <div id = "polygon-div"></div>
+          <div class="row justify-content-center">
+            <input type="button" onclick="exec(); jsonDownload(); svgDownload();" class="btn btn-primary col-8" value="Start" />
+          </div>
       </form>          
     </div>
     <div class="col-sm col-md col-lg col-xl" style="overflow-y:hidden; ">
       <div class="row">
         <span style="font-size:30px;cursor:pointer" onclick="sidebarToggle()">&#9776;</span>
+
         <table border='1'>
           <thead>
             <tr>
@@ -270,9 +375,9 @@
             <td><input type="text" name="ScaleY" id="ScaleY" size="3" value="1" onchange="chageScaleXY()"></td>
           </tr>
           </tbody>
-        </table>
+        </table>      
       </div>
-        <svg id="svg-main" width="100%" height="90%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" style="border:0px solid; background:rgba(255,255,255,1);"></svg>  
+      <svg id="svg-main" width="100%" height="90%" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" style="border:0px solid; background:rgba(255,255,255,1);"></svg> 
     </div>
   </div>
 </div>
