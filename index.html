@@ -151,6 +151,25 @@
               .append(
                 $('<label>')
                 .attr('class','col-3 col-form-label')
+                .text('PathAngle')
+                )
+              .append(
+                $('<div>')
+                .attr('class', 'col-9')
+                .append(
+                    $('<input>')
+                    .attr('type','text')
+                    .attr('name','PathAngle')
+                    .attr('id','PathAngle'+count)
+                )
+              )
+            )
+          .append(
+            $('<div>')
+              .attr('class', 'form-group row')
+              .append(
+                $('<label>')
+                .attr('class','col-3 col-form-label')
                 .text('PloygonAngle')
                 )
               .append(
@@ -341,7 +360,7 @@
             <div class="btn-group col-9" role="group" aria-label="Basic example">
               <button type="button" onclick = "addPolygon()" class="btn btn-info"> + </button>
               <button type="button" id = "btnRemovePolygon" onclick = "removePolygon()" class="btn btn-info" > - </button>
-              <div><span id = "polygonCount">-1</span></div>
+              <div><span id = "polygonCount" style="visibility: hidden;">-1</span></div>
             </div>
           </div>
           <div id = "polygon-div"></div>
