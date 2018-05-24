@@ -130,12 +130,14 @@ function exec(){
 	//var thickness;
 	for(var i = 0; i <= polygonCount; i++){
 		var thickness = new Thickness(turtle.getPointList());
+		var pathAngle = document.getElementById("PathAngle"+i).value.split(",");
+		console.log(pathAngle);
 		var thicknessLayer1 = document.getElementById("Thickness1-"+i).value;
 		var thicknessLayer2 = document.getElementById("Thickness2-"+i).value;
 		var thicknessLayer3 = document.getElementById("Thickness3-"+i).value;
-		thickness.exec(document.querySelector("#colorLayer1-"+i).value, thicknessLayer1, document.querySelector("#PolygonAngle"+i).value);
-		thickness.exec(document.querySelector("#colorLayer2-"+i).value, thicknessLayer2, document.querySelector("#PolygonAngle"+i).value);
-		thickness.exec(document.querySelector("#colorLayer3-"+i).value, thicknessLayer3, document.querySelector("#PolygonAngle"+i).value);
+		thickness.exec(document.querySelector("#colorLayer1-"+i).value, thicknessLayer1, document.querySelector("#PolygonAngle"+i).value,pathAngle);
+		thickness.exec(document.querySelector("#colorLayer2-"+i).value, thicknessLayer2, document.querySelector("#PolygonAngle"+i).value,pathAngle);
+		thickness.exec(document.querySelector("#colorLayer3-"+i).value, thicknessLayer3, document.querySelector("#PolygonAngle"+i).value,pathAngle);
 
 	}
 	/*var thickness = new Thickness(turtle.getPointList());
