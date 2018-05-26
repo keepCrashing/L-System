@@ -156,11 +156,30 @@ body {
 	.container-fluid{
 	height: 100%;
 }
-.container-fluid{
-	height: 100%;
-}
 .black-background {background-color:#000000;}
 .white {color:#ffffff;}
+@media(min-width:360px) {
+  #wrapper {
+    padding-left: 0;
+  }
+  #wrapper.toggled {
+    padding-left: 450px;
+  }
+  #sidebar-wrapper {
+    width: 0;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 450px;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+    position: relative;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
+}
 @media(min-width:768px) {
   #wrapper {
     padding-left: 0;
