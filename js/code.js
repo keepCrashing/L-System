@@ -128,7 +128,37 @@ function exec(){
 	.attr("id","gMain");
 	let polygonCount = parseInt( $("#polygonCount").text(), 10 );
 	//var thickness;
-	for(var i = 0; i <= polygonCount; i++){
+	//let lay1 = new Layer();
+	let color1 = [];
+	let color2 = [];
+	let color3 = [];
+	let thickness1 = [];
+	let thickness2 = [];
+	let thickness3 = [];
+	let pathA = [];
+	let polygonA = [];
+	for(let i = 0; i <= polygonCount; i++){
+		color1.push(document.getElementById("colorLayer1-"+i).value);
+		color2.push(document.getElementById("colorLayer2-"+i).value);
+		color3.push(document.getElementById("colorLayer3-"+i).value);
+		thickness1.push(document.getElementById("Thickness1-"+i).value);
+		thickness2.push(document.getElementById("Thickness2-"+i).value);
+		thickness3.push(document.getElementById("Thickness3-"+i).value);
+		pathA.push(document.getElementById("PathAngle"+i).value.split(","));
+		polygonA.push(document.getElementById("PolygonAngle"+i).value);
+		console.log(color1);
+		console.log(pathA);
+		console.log(thickness1);
+		console.log(polygonA);
+	}
+	var thickness = new Thickness(turtle.getPointList());
+	thickness.exec(color1, thickness1, polygonA,pathA);
+	thickness.exec(color2, thickness2, polygonA,pathA);
+	thickness.exec(color3, thickness3, polygonA,pathA);
+
+/*
+	for(let i = 0; i <= polygonCount; i++){
+		//let lay1 = new Layer();
 		var thickness = new Thickness(turtle.getPointList());
 		var pathAngle = document.getElementById("PathAngle"+i).value.split(",");
 		console.log(pathAngle);
@@ -139,7 +169,8 @@ function exec(){
 		thickness.exec(document.querySelector("#colorLayer2-"+i).value, thicknessLayer2, document.querySelector("#PolygonAngle"+i).value,pathAngle);
 		thickness.exec(document.querySelector("#colorLayer3-"+i).value, thicknessLayer3, document.querySelector("#PolygonAngle"+i).value,pathAngle);
 
-	}
+	}*/
+
 	/*var thickness = new Thickness(turtle.getPointList());
 	var thicknessLayer1 = document.getElementById("thicknessLayer1").value;
 	var thicknessLayer2 = document.getElementById("thicknessLayer2").value;
@@ -151,6 +182,8 @@ function exec(){
 	//thickness.exec("#97AECF",5, 135);
 	//thickness.exec("#2C2D86",5, 135);
 	//thickness.exec("#1F1B3D",5, 135);
+
+	
 	d3.select("svg")
 	.append("path")
 	.attr("id","path2")
