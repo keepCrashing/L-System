@@ -126,9 +126,10 @@ function exec(){
 	d3.select("svg")
 	.append("g")
 	.attr("id","gMain");
+	let bbox = "#path1";
 	let polygonCount = parseInt( $("#polygonCount").text(), 10 );
-	//var thickness;
-	//let lay1 = new Layer();
+	if(polygonCount >= 0){
+		bbox = "#gMain";
 	let color1 = [];
 	let color2 = [];
 	let color3 = [];
@@ -154,36 +155,7 @@ function exec(){
 	var thickness = new Thickness(turtle.getPointList());
 	thickness.exec(color1, thickness1, polygonA,pathA);
 	thickness.exec(color2, thickness2, polygonA,pathA);
-	thickness.exec(color3, thickness3, polygonA,pathA);
-
-/*
-	for(let i = 0; i <= polygonCount; i++){
-		//let lay1 = new Layer();
-		var thickness = new Thickness(turtle.getPointList());
-		var pathAngle = document.getElementById("PathAngle"+i).value.split(",");
-		console.log(pathAngle);
-		var thicknessLayer1 = document.getElementById("Thickness1-"+i).value;
-		var thicknessLayer2 = document.getElementById("Thickness2-"+i).value;
-		var thicknessLayer3 = document.getElementById("Thickness3-"+i).value;
-		thickness.exec(document.querySelector("#colorLayer1-"+i).value, thicknessLayer1, document.querySelector("#PolygonAngle"+i).value,pathAngle);
-		thickness.exec(document.querySelector("#colorLayer2-"+i).value, thicknessLayer2, document.querySelector("#PolygonAngle"+i).value,pathAngle);
-		thickness.exec(document.querySelector("#colorLayer3-"+i).value, thicknessLayer3, document.querySelector("#PolygonAngle"+i).value,pathAngle);
-
-	}*/
-
-	/*var thickness = new Thickness(turtle.getPointList());
-	var thicknessLayer1 = document.getElementById("thicknessLayer1").value;
-	var thicknessLayer2 = document.getElementById("thicknessLayer2").value;
-	var thicknessLayer3 = document.getElementById("thicknessLayer3").value;
-
-	thickness.exec(document.querySelector("#colorLayer1").value, thicknessLayer1, document.querySelector("#PolygonAngle").value);
-	thickness.exec(document.querySelector("#colorLayer2").value, thicknessLayer2, document.querySelector("#PolygonAngle").value);
-	thickness.exec(document.querySelector("#colorLayer3").value, thicknessLayer3, document.querySelector("#PolygonAngle").value);*/
-	//thickness.exec("#97AECF",5, 135);
-	//thickness.exec("#2C2D86",5, 135);
-	//thickness.exec("#1F1B3D",5, 135);
-
-	
+	thickness.exec(color3, thickness3, polygonA,pathA);	
 	d3.select("svg")
 	.append("path")
 	.attr("id","path2")
@@ -212,13 +184,15 @@ function exec(){
 				polygonList.push(this.id);
 			}
 		});
+	}
 	var scaleX = document.getElementById("ScaleX").value;
 	var scaleY = document.getElementById("ScaleY").value;
 	d3.selectAll("path")
 		.attr("transform","scale("+scaleX +"," + scaleY + ")");
 	d3.selectAll("polygon")
 		.attr("transform","scale("+scaleX +"," + scaleY + ")");
-	var g = document.querySelector("#gMain");
+
+	var g = document.querySelector(bbox);
 	var obbox = g.getBBox();
 	d3.select("svg")
 	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
