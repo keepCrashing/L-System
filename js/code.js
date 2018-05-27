@@ -147,10 +147,6 @@ function exec(){
 		thickness3.push(document.getElementById("Thickness3-"+i).value);
 		pathA.push(document.getElementById("PathAngle"+i).value.split(","));
 		polygonA.push(document.getElementById("PolygonAngle"+i).value);
-		console.log(color1);
-		console.log(pathA);
-		console.log(thickness1);
-		console.log(polygonA);
 	}
 	var thickness = new Thickness(turtle.getPointList());
 	thickness.exec(color1, thickness1, polygonA,pathA);
@@ -166,7 +162,6 @@ function exec(){
 			//console.log(thickness.pointList[i].data);
 			ret += thickness.pointList[i].data + " " + thickness.pointList[i].x + " " + thickness.pointList[i].y;
 		}
-
 		return ret;
 	})
 	.attr("stroke",turtle.getPathAttributes().stroke)
