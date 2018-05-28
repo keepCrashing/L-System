@@ -83,11 +83,11 @@ function exec(){
 	//turtle.path = "M 100 100"
 	for(i=0;i<List.length;i++){
 		if(List[i] == '-'){
-			turtle.turn(parseFloat(Angle));
+			turtle.turn(parseFloat(Angle)*-1);
 		}
 		else if(List[i] == '+')
 		{
-			turtle.turn(parseFloat(Angle)*-1);
+			turtle.turn(parseFloat(Angle)*1);
 		}
 		else if(List[i] == '[')
 		{
@@ -168,6 +168,22 @@ function exec(){
 	.attr("fill",turtle.getPathAttributes().fill)
 	.attr("stroke-linecap",turtle.getPathAttributes().strokeLinecap)
 	.attr("stroke-linejoin",turtle.getPathAttributes().strokeLinejoin);
+	/*d3.select("svg")
+	.append("path")
+	.attr("id","path2")
+	.attr("d",function(){
+		let ret = "";
+		//ret = "M " + thickness.pointList[0].x + " " + thickness.pointList[0].y;
+		for(i = 0; i < thickness.pointList.length; i++){
+			//console.log(thickness.pointList[i].data);
+			ret += thickness.pointList[i].data + " " + thickness.pointList[i].x + " " + thickness.pointList[i].y;
+		}
+		return ret;
+	})
+	.attr("stroke",turtle.getPathAttributes().stroke)
+	.attr("fill",turtle.getPathAttributes().fill)
+	.attr("stroke-linecap",turtle.getPathAttributes().strokeLinecap)
+	.attr("stroke-linejoin",turtle.getPathAttributes().strokeLinejoin);*/
 	d3.selectAll("polygon")
 		.on("click", function() {
 			if(this.getAttribute("stroke") == 'red'){
@@ -194,7 +210,16 @@ function exec(){
 	.attr("preserveAspectRatio","xMinYMin meet");
 	d3.select("#btnColorChanging")
 	.attr("onclick","changeColor(); svgDownload();");
+/*var svg = document.querySelector("svg");
+var rects = document.querySelectorAll("polygon");
 
+var i = rects.length;
+console.log(i);
+while(i--) {
+  rects[i].addEventListener("click", function(e) {
+    svg.appendChild(e.target);
+  });
+}*/
 }
 
 function changeColor(){

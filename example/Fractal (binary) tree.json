@@ -1,1 +1,1 @@
-{"Iterations":"5","Angle":"45","Alphabet":"","Axoim":"++A","Rule1":"A=B[-A]+A","Rule2":"B=BB","Rule3":"","Rule4":"","Rule5":"","Rule6":"","PolygonAngle":"315","Layer1":{"Color":"#344e36"},"Layer2":{"Color":"#799870"},"Layer3":{"Color":"#fef3e2"}}
+{"Iterations":"5","Angle":"45","Alphabet":"","Axoim":"--A","Rule1":"A=B[+A]-A","Rule2":"B=BB","Rule3":"","Rule4":"","Rule5":"","Rule6":"","Polygon":[]}

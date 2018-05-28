@@ -165,7 +165,7 @@
     }
     function removePolygon(){
       let count = $("#polygonCount").text();
-      $("#polygon"+count).remove();
+      $("#polygon-div"+count).remove();
       subCount($("#polygonCount"));
       if(count == "0")    document.getElementById("btnRemovePolygon").disabled = true;
     }
@@ -176,7 +176,7 @@
       $('#polygon-div')
       .append(
         $('<div>')
-          .attr('id', 'polygon'+count)
+          .attr('id', 'polygon-div'+count)
           .append(
             $('<div>')
               .attr('class', 'form-group row')
