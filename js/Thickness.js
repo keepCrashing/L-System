@@ -43,9 +43,9 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 					if(a2 == 0 && angle[x] > 180)a2=360;
 					if(a2 < angle[x] && a1 > angle[x] && angle[x]-a2 < 90 && a1 - angle[x] < 90 && i != 0){
 						if(c-1 != -1)left.push("polygon"+(c-1));
-						console.log(a1);
-						console.log(a2);
-						console.log("polygon"+(c-1));
+						//console.log(a1);
+						//console.log(a2);
+						//console.log("polygon"+(c-1));
 					}
 					if(a1 < angle[x] && a2 > angle[x] && angle[x]-a1 < 90 && a2 - angle[x] < 90 && i != 0){
 						if(c-1 != -1)right.push("polygon"+(c-1));
