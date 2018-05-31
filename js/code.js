@@ -64,6 +64,7 @@ function go(depth){
 	go(depth - 1);
 }
 function exec(){
+	polygonList = [];
 	var Iterations = document.getElementById("Iterations").value;//6
 	var Alphabet = document.getElementById("Alphabet").value;
 	var Angle = document.getElementById("Angle").value;//60

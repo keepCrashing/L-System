@@ -19,7 +19,7 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 		for(let x = 0; x < pathAngle.length; x++){
 			for(let y = 0; y < pathAngle[x].length; y++){
 				if(p2.angle == pathAngle[x][y]){
-					//if(thickness[x] == 0)break;
+					if(thickness[x] == 0)break;
 					let np1 = new Points (p1.data,p1.x+Math.cos(angle[x]*Math.PI/180)*thickness[x],p1.y+Math.sin(angle[x]*Math.PI/180)*thickness[x],p1.angle);
 					let np2 = new Points (p2.data,p2.x+Math.cos(angle[x]*Math.PI/180)*thickness[x],p2.y+Math.sin(angle[x]*Math.PI/180)*thickness[x],p2.angle);
 					npointList.push(np1);
@@ -35,31 +35,42 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 						.attr("stroke",color[x])
 						.attr("stroke-linecap","round")
 						.attr("stroke-linejoin","round");
-
 					let a1 = this.pointList[i].angle;
 					let a2 = this.pointList[i+1].angle;
+					let polygonA = angle[x];
 					let c = this.polyCount;
-					if(a1 == 0 && angle[x] > 180)a1=360;
-					if(a2 == 0 && angle[x] > 180)a2=360;
-					if(a2 < angle[x] && a1 > angle[x] && angle[x]-a2 < 90 && a1 - angle[x] < 90 && i != 0){
-						if(c-1 != -1)left.push("polygon"+(c-1));
-						//console.log(a1);
-						//console.log(a2);
-						//console.log("polygon"+(c-1));
+					//if(a1 == 0 && angle[x] > 180)a1=360;
+					//if(a2 == 0 && angle[x] > 180)a2=360;
+					if(a1 > 180)a1 = a1 - 360;
+					if(a2 > 180)a2 = a2 - 360;
+					if(polygonA > 180)polygonA = polygonA - 360;
+		
+					if(i != 0 && a2 < polygonA && a1 > polygonA && Math.abs(a1-a2)<180){
+						left.push("polygon"+(c-1));
+						console.log(a1);
+						console.log(a2);
+						console.log("polygon"+(c-1));
 					}
-					if(a1 < angle[x] && a2 > angle[x] && angle[x]-a1 < 90 && a2 - angle[x] < 90 && i != 0){
-						if(c-1 != -1)right.push("polygon"+(c-1));
-						//console.log(a1);
-						//console.log(a2);
-						//console.log("polygon"+(c-1));
+					if(i != 0 && a1 < polygonA && a2 > polygonA && Math.abs(a1-a2)<180){
+						right.push("polygon"+(c-1));
+						console.log(a1);
+						console.log(a2);
+						console.log("polygon"+(c-1));
+					}
+					if(i==this.pointList.length-2){
+						right.push("polygon"+(c));
+						console.log(c);
 					}
 					this.polyCount++;
 				}
 			}
 		}
 	}
+	removeAppendPolygon(left,this.count);
+	removeAppendPolygon(right,this.count);
 
-	for(let i = 0; i < left.length; i++){
+	
+	/*for(let i = 0; i < left.length; i++){
 		let p = document.getElementById(left[i]);
 		d3.select("#" + left[i]).remove();
 		d3.select("#g"+this.count)
@@ -82,8 +93,22 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 		.attr("stroke",p.getAttribute("stroke"))
 		.attr("stroke-linecap",p.getAttribute("stroke-linecap"))
 		.attr("stroke-linejoin",p.getAttribute("stroke-linejoin"));
-	}
+	}*/
 	this.pointList = npointList;
 	this.count++;
 
+}
+function removeAppendPolygon(arr,count){
+	for(let i = 0; i < arr.length; i++){
+		let p = document.getElementById(arr[i]);
+		d3.select("#" + arr[i]).remove();
+		d3.select("#g"+count)
+		.append("polygon")
+		.attr("id",p.getAttribute("id"))
+		.attr("points",p.getAttribute("points"))
+		.attr("fill",p.getAttribute("fill"))
+		.attr("stroke",p.getAttribute("stroke"))
+		.attr("stroke-linecap",p.getAttribute("stroke-linecap"))
+		.attr("stroke-linejoin",p.getAttribute("stroke-linejoin"));
+	}
 }
