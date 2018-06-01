@@ -46,7 +46,7 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 					if(polygonA > 180)polygonA = polygonA - 360;
 		
 					if(i != 0 && a2 < polygonA && a1 > polygonA && Math.abs(a1-a2)<180){
-						left.push("polygon"+(c-1));
+						right.push("polygon"+(c-1));
 						console.log(a1);
 						console.log(a2);
 						console.log("polygon"+(c-1));
@@ -58,7 +58,7 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 						console.log("polygon"+(c-1));
 					}
 					if(i==this.pointList.length-2){
-						right.push("polygon"+(c));
+						left.push("polygon"+(c));
 						console.log(c);
 					}
 					this.polyCount++;
@@ -66,10 +66,10 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 			}
 		}
 	}
-	removeAppendPolygon(left,this.count);
+	//removeAppendPolygon(left,this.count);
 	removeAppendPolygon(right,this.count);
-
-	
+	removeAppendPolygon(left,this.count);
+		
 	/*for(let i = 0; i < left.length; i++){
 		let p = document.getElementById(left[i]);
 		d3.select("#" + left[i]).remove();
@@ -99,7 +99,7 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 
 }
 function removeAppendPolygon(arr,count){
-	for(let i = 0; i < arr.length; i++){
+	for(let i = arr.length-1; i >= 0; i--){
 		let p = document.getElementById(arr[i]);
 		d3.select("#" + arr[i]).remove();
 		d3.select("#g"+count)
