@@ -8,6 +8,7 @@ function Thickness(pointList){
 }
 Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 	let npointList = [];
+	let npoint2 ;
 	let right = [];
 	let left = [];
 	d3.select("#gMain")
@@ -20,8 +21,16 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 			for(let y = 0; y < pathAngle[x].length; y++){
 				if(p2.angle == pathAngle[x][y]){
 					if(thickness[x] == 0)break;
-					let np1 = new Points (p1.data,p1.x+Math.cos(angle[x]*Math.PI/180)*thickness[x],p1.y+Math.sin(angle[x]*Math.PI/180)*thickness[x],p1.angle);
+					let np1;
+					let o = Math.sqrt(Math.pow(Math.sqrt(Math.pow(p1.x-p2.x,2)+Math.pow(p1.y-p2.y,2)),2)+Math.pow(thickness[x],2));
+					console.log(o);
+					if(npoint2 == undefined){
+						np1 = new Points (p1.data,p1.x+Math.cos(angle[x]*Math.PI/180)*thickness[x],p1.y+Math.sin(angle[x]*Math.PI/180)*thickness[x],p1.angle);
+					}else{
+						np1 = npoint2;
+					}
 					let np2 = new Points (p2.data,p2.x+Math.cos(angle[x]*Math.PI/180)*thickness[x],p2.y+Math.sin(angle[x]*Math.PI/180)*thickness[x],p2.angle);
+					npoint2 = np2;
 					npointList.push(np1);
 					if(i==this.pointList.length-2){
 						npointList.push(np2);
