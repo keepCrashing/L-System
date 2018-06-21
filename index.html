@@ -457,6 +457,7 @@
             <tr>
               <th colspan="2"><label>Download</label></th>
               <th><label>Color</label></th>
+              <th><label>BgColor</label></th>
               <th><label>ScaleX</label></th>
               <th><label>ScaleY</label></th>
             </tr>          
@@ -469,7 +470,9 @@
               <input type="color" id="colorChanging">
               <input type="button" id="btnColorChanging" class="btn btn-info btn-sm" value="Fill" />
             </td>
-            <td><input type="text" name="ScaleX" id="ScaleX" size="3" value="1" onchange="chageScaleXY()"></td>
+            <td>
+              <input type="color" id="bgColor" value="#ffffff" onchange="chageBgColor()">
+            </td>            <td><input type="text" name="ScaleX" id="ScaleX" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><input type="text" name="ScaleY" id="ScaleY" size="3" value="1" onchange="chageScaleXY()"></td>
           </tr>
           </tbody>
@@ -487,6 +490,13 @@ function sidebarToggle() {
   }else{
     $('#sidebar').show();
   }
+}
+function chageBgColor(){
+  let bgColor = document.getElementById("bgColor").value;
+  d3.selectAll("svg")
+    .style("background",bgColor);
+  svgDownload();
+  jsonDownload();
 }
 function chageScaleXY(){
   var scaleX = document.getElementById("ScaleX").value;
