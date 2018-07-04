@@ -83,8 +83,7 @@
     }
     var file_viewer = undefined;
     function init() {
-      var url = location.href;
-      console.log(url);
+
       file_viewer = new FileViewer(
         {
           controller: document.getElementById('Loadjson'),
@@ -105,6 +104,43 @@
           //colorLayer3: document.getElementById('colorLayer3')
         }
       );
+      var url = location.href;
+      if(url.indexOf('?')!=-1)
+      {
+          var ary1 = url.split('?');
+          var mydata = JSON.parse(decodeURI(ary1[1]));
+          console.log(mydata);
+          $('#Iterations')[0].value = mydata.Iterations;
+          $('#Angle')[0].value = mydata.Angle;
+          $('#Alphabet')[0].value = mydata.Alphabet;
+          $('#Axoim')[0].value = mydata.Axoim;
+      
+          $('#Rule1')[0].value = mydata.Rule1;
+          $('#Rule2')[0].value = mydata.Rule2;
+          $('#Rule3')[0].value = mydata.Rule3;
+          $('#Rule4')[0].value = mydata.Rule4;
+          $('#Rule5')[0].value = mydata.Rule5;
+          $('#Rule6')[0].value = mydata.Rule6;
+          let polygonCount = parseInt( $("#polygonCount").text(), 10 );
+          for(var i = 0; i <= polygonCount; i++){
+              removePolygon();
+          }
+          for(var i = 0; i < mydata.Polygon.length; i++){
+              addPolygon();
+              $('#PathAngle'+i)[0].value = mydata.Polygon[i].PathAngle;
+              $('#PolygonAngle'+i)[0].value = mydata.Polygon[i].PolygonAngle;
+              $('#colorLayer1-'+i)[0].value = mydata.Polygon[i].Layer1.Color;
+              $('#Thickness1-'+i)[0].value = mydata.Polygon[i].Layer1.Thickness;
+              $('#colorLayer2-'+i)[0].value = mydata.Polygon[i].Layer2.Color;
+              $('#Thickness2-'+i)[0].value = mydata.Polygon[i].Layer2.Thickness;
+              $('#colorLayer3-'+i)[0].value = mydata.Polygon[i].Layer3.Color;
+              $('#Thickness3-'+i)[0].value = mydata.Polygon[i].Layer3.Thickness;
+          }
+          exec();
+          jsonDownload(); 
+          svgDownload();
+          //location.href = ary1[0];
+      }
     }
     function jsonDownload(){
       let polygonCount = parseInt( $("#polygonCount").text(), 10 );
