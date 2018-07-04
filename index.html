@@ -83,6 +83,8 @@
     }
     var file_viewer = undefined;
     function init() {
+      var url = location.href;
+      console.log(url);
       file_viewer = new FileViewer(
         {
           controller: document.getElementById('Loadjson'),
