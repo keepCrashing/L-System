@@ -140,6 +140,7 @@
           jsonDownload(); 
           svgDownload();
           //location.href = ary1[0];
+          window.history.pushState({},0,ary1[0]);
       }
     }
     function jsonDownload(){
