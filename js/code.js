@@ -77,8 +77,6 @@ function exec(){
 	Rule6 = document.getElementById("Rule6").value;
 	List = Axoim;
 	go(Iterations);
-	
-	
 	document.querySelector('svg').innerHTML = '';
 	var turtle = new Turtle();
 	//turtle.path = "M 100 100"
