@@ -108,7 +108,7 @@
       if(url.indexOf('?')!=-1)
       {
           var ary1 = url.split('?');
-          var mydata = JSON.parse(decodeURI(ary1[1]));
+          var mydata = JSON.parse(decodeURI(atob(ary1[1])));
           console.log(mydata);
           $('#Iterations')[0].value = mydata.Iterations;
           $('#Angle')[0].value = mydata.Angle;

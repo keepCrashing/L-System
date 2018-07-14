@@ -221,7 +221,7 @@ while(i--) {
 }*/
 	var url = location.href;
 	var ary1 = url.split('?');
-	window.history.pushState({},0,ary1[0]+'?'+JSON.stringify(getJson()));
+	window.history.pushState({},0,ary1[0]+'?'+btoa(JSON.stringify(getJson())));
 }
 
 function changeColor(){
