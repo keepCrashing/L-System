@@ -219,6 +219,9 @@ while(i--) {
     svg.appendChild(e.target);
   });
 }*/
+	var url = location.href;
+	var ary1 = url.split('?');
+	window.history.pushState({},0,ary1[0]+'?'+JSON.stringify(getJson()));
 }
 
 function changeColor(){
