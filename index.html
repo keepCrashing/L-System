@@ -391,6 +391,31 @@
       var n = parseInt( j.text(), 10 );
       j.text( n - 1 );
     }
+    let animationName = "opacity0"; 
+    function animation(){
+      let sec = 0;
+      let polygonIDs = $("#svg-main polygon[id]")
+            .map(function() { return this.id; })
+            .get();
+      for(let i = 0; i < polygonIDs.length; i++){
+        $("#" + polygonIDs[i]).css("opacity","0");
+      }
+      for(let i = 0; i < polygonIDs.length; i++){
+        $("#" + polygonIDs[i]).css("animation",animationName + " 1s " + (sec+=1).toString() + "s").css("animation-fill-mode","forwards");
+        console.log(sec);
+      }
+      //$("#polygon0").css("opacity","0");
+      //$("#polygon1").css("opacity","0");
+      //$("#polygon2").css("opacity","0");        
+      //$("#polygon0").css("animation",animationName + " 1s 1s ").css("animation-fill-mode","forwards");
+      //$("#polygon1").css("animation",animationName + " 1s 2s ").css("animation-fill-mode","forwards");
+      //$("#polygon2").css("animation",animationName + " 1s 3s ").css("animation-fill-mode","forwards");
+      if(animationName == "opacity0"){
+        animationName = "opacity1";
+      }else{
+        animationName = "opacity0";
+      }
+    }
     </script>
 </head>
 <body onload="init();">
@@ -532,6 +557,7 @@
               <th><label>BgColor</label></th>
               <th><label>ScaleX</label></th>
               <th><label>ScaleY</label></th>
+              <th><label>Animation</label></th>
             </tr>          
           </thead>
           <tbody>
@@ -546,6 +572,8 @@
               <input type="color" id="bgColor" value="#ffffff" onchange="chageBgColor()">
             </td>            <td><input type="text" name="ScaleX" id="ScaleX" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><input type="text" name="ScaleY" id="ScaleY" size="3" value="1" onchange="chageScaleXY()"></td>
+            <td><button type="button" onclick="animation()">play</button>
+          </td>
           </tr>
           </tbody>
         </table>      
