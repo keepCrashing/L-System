@@ -394,6 +394,13 @@
     let animationName = "opacity0"; 
     function animation(){
       let sec = 0;
+      let pathIDs = $("#svg-main path[id]")
+            .map(function() { return this.id; })
+            .get();
+      for(let i = 0; i < pathIDs.length; i++){
+        $("#" + pathIDs[i]).css("opacity","0");
+      }
+      $("#" + pathIDs[0]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
       let polygonIDs = $("#svg-main polygon[id]")
             .map(function() { return this.id; })
             .get();
@@ -401,9 +408,9 @@
         $("#" + polygonIDs[i]).css("opacity","0");
       }
       for(let i = 0; i < polygonIDs.length; i++){
-        $("#" + polygonIDs[i]).css("animation",animationName + " 1s " + (sec+=1).toString() + "s").css("animation-fill-mode","forwards");
-        console.log(sec);
+        $("#" + polygonIDs[i]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
       }
+      $("#" + pathIDs[1]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
       //$("#polygon0").css("opacity","0");
       //$("#polygon1").css("opacity","0");
       //$("#polygon2").css("opacity","0");        
