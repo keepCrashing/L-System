@@ -21,3 +21,11 @@ html, body, form {
 	0% {opacity:0;}
 	100% {opacity:1;}
 }
+@keyframes strokeDashoffset0{
+    0% {stroke-dashoffset:var(--dashoffset);}
+    100% {stroke-dashoffset:0;}
+}
+@keyframes strokeDashoffset1{
+    0% {stroke-dashoffset:var(--dashoffset);}
+    100% {stroke-dashoffset:0;}
+}

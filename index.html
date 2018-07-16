@@ -391,16 +391,25 @@
       var n = parseInt( j.text(), 10 );
       j.text( n - 1 );
     }
-    let animationName = "opacity0"; 
+    let animation_opacity = "opacity0";
+    let animation_strokeDashoffset = "strokeDashoffset0";
     function animation(){
       let sec = 0;
       let pathIDs = $("#svg-main path[id]")
             .map(function() { return this.id; })
             .get();
       for(let i = 0; i < pathIDs.length; i++){
-        $("#" + pathIDs[i]).css("opacity","0");
+        let length = d3.select("#" + pathIDs[i]).node().getTotalLength();
+        document.body.style.setProperty('--dashoffset', length);
+        $("#" + pathIDs[i]).css("stroke-dasharray", length).css("stroke-dashoffset", length);
       }
-      $("#" + pathIDs[0]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+
+      for(let i = 0; i < pathIDs.length; i++){
+        //$("#" + pathIDs[i]).css("opacity","0");
+      }
+      $("#" + pathIDs[0]).css("animation",animation_strokeDashoffset + " 15s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+      sec=sec+15;
+      /*$("#" + pathIDs[0]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");*/
       let polygonIDs = $("#svg-main polygon[id]")
             .map(function() { return this.id; })
             .get();
@@ -408,19 +417,26 @@
         $("#" + polygonIDs[i]).css("opacity","0");
       }
       for(let i = 0; i < polygonIDs.length; i++){
-        $("#" + polygonIDs[i]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+        $("#" + polygonIDs[i]).css("animation",animation_opacity + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
       }
-      $("#" + pathIDs[1]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+      $("#" + pathIDs[1]).css("animation",animation_strokeDashoffset + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+
+
       //$("#polygon0").css("opacity","0");
       //$("#polygon1").css("opacity","0");
       //$("#polygon2").css("opacity","0");        
       //$("#polygon0").css("animation",animationName + " 1s 1s ").css("animation-fill-mode","forwards");
       //$("#polygon1").css("animation",animationName + " 1s 2s ").css("animation-fill-mode","forwards");
       //$("#polygon2").css("animation",animationName + " 1s 3s ").css("animation-fill-mode","forwards");
-      if(animationName == "opacity0"){
-        animationName = "opacity1";
+      if(animation_opacity == "opacity0"){
+        animation_opacity = "opacity1";
       }else{
-        animationName = "opacity0";
+        animation_opacity = "opacity0";
+      }
+      if(animation_strokeDashoffset == "strokeDashoffset0"){
+        animation_strokeDashoffset = "strokeDashoffset1";
+      }else{
+        animation_strokeDashoffset = "strokeDashoffset0";
       }
     }
     </script>
