@@ -78,7 +78,6 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 			}
 		}
 	}
-	//removeAppendPolygon(left,this.count);
 	removeAppendPolygon(right,this.count);
 	removeAppendPolygon(left,this.count);
 		
