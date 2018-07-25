@@ -205,7 +205,7 @@ function exec(){
 	var g = document.querySelector(bbox);
 	var obbox = g.getBBox();
 	d3.select("svg")
-	.attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
+	.attr("viewBox",obbox.x +","+ obbox.y +","+ (obbox.width+1) +","+ (obbox.height+1))
 	.attr("preserveAspectRatio","xMinYMin meet");
 	d3.select("#btnColorChanging")
 	.attr("onclick","changeColor(); svgDownload();");
