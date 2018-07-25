@@ -79,7 +79,7 @@ Thickness.prototype.exec = function(color,thickness,angle,pathAngle){
 		}
 	}
 	removeAppendPolygon(right,this.count);
-	removeAppendPolygon(left,this.count);
+	//removeAppendPolygon(left,this.count);
 		
 	/*for(let i = 0; i < left.length; i++){
 		let p = document.getElementById(left[i]);
