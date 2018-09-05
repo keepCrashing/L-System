@@ -407,7 +407,8 @@
       for(let i = 0; i < pathIDs.length; i++){
         //$("#" + pathIDs[i]).css("opacity","0");
       }
-      $("#" + pathIDs[0]).css("animation",animation_strokeDashoffset + " 15s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+      $("#" + pathIDs[0]).css("animation",animation_strokeDashoffset + 
+        " 15s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
       sec=sec+15;
       /*$("#" + pathIDs[0]).css("animation",animationName + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");*/
       let polygonIDs = $("#svg-main polygon[id]")
@@ -587,6 +588,8 @@
               <th><label>ScaleX</label></th>
               <th><label>ScaleY</label></th>
               <th><label>Animation</label></th>
+              <th><label>Origin</label></th>
+
             </tr>          
           </thead>
           <tbody>
@@ -602,6 +605,8 @@
             </td>            <td><input type="text" name="ScaleX" id="ScaleX" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><input type="text" name="ScaleY" id="ScaleY" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><button type="button" onclick="animation()">play</button>
+          </td>
+                      <td><button type="button" onclick="animation()">show</button>
           </td>
           </tr>
           </tbody>
