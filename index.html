@@ -77,6 +77,13 @@
         $('#colorLayer3-'+i)[0].value = mydata.Polygon[i].Layer3.Color;
         $('#Thickness3-'+i)[0].value = mydata.Polygon[i].Layer3.Thickness;
       }
+      if(mydata.Origin){
+        console.log(mydata.Origin);
+        $(".origin").css( "display", "block" );
+        $("#myImg").attr( "src", mydata.Origin);
+      }else{
+        $(".origin").css( "display", "none" );
+      }
       exec();
       jsonDownload(); 
       svgDownload();
@@ -136,6 +143,13 @@
               $('#colorLayer3-'+i)[0].value = mydata.Polygon[i].Layer3.Color;
               $('#Thickness3-'+i)[0].value = mydata.Polygon[i].Layer3.Thickness;
           }
+          if(mydata.Origin){
+            console.log(mydata.Origin);
+            $(".origin").css( "display", "block" );
+            $("#myImg").attr( "src", mydata.Origin);
+          }else{
+            $(".origin").css( "display", "none" );
+          }
           exec();
           jsonDownload(); 
           svgDownload();
@@ -156,7 +170,8 @@
           "Rule4": $('#Rule4')[0].value,
           "Rule5": $('#Rule5')[0].value,
           "Rule6": $('#Rule6')[0].value,
-          "Polygon" : []
+          "Polygon" : [],
+          "Origin" : $('#myImg')[0].src
       };
       for(var i = 0; i <= polygonCount; i++){
         obj.Polygon.push({
@@ -588,7 +603,14 @@
               <th><label>ScaleX</label></th>
               <th><label>ScaleY</label></th>
               <th><label>Animation</label></th>
-              <th><label>Origin</label></th>
+              <th class="origin" style="display: none;"><label>Origin</label><img id="myImg" style="display:none" src="" alt="Snow" style="width:100%;max-width:300px">
+              <!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+  
+</div></th>
 
             </tr>          
           </thead>
@@ -605,9 +627,9 @@
             </td>            <td><input type="text" name="ScaleX" id="ScaleX" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><input type="text" name="ScaleY" id="ScaleY" size="3" value="1" onchange="chageScaleXY()"></td>
             <td><button type="button" onclick="animation()">play</button>
-          </td>
-                      <td><button type="button" onclick="animation()">show</button>
-          </td>
+            </td>
+            <td class="origin" style="display: none;"><button type="button" onclick="showOrgin()">show</button>
+            </td>
           </tr>
           </tbody>
         </table>      
@@ -644,6 +666,21 @@ function chageScaleXY(){
   d3.select("svg")
   .attr("viewBox",obbox.x +","+ obbox.y +","+ obbox.width +","+ obbox.height)
   .attr("preserveAspectRatio","xMinYMin meet");
+}
+function showOrgin(){
+    var modal = document.getElementById('myModal');
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    modal.style.display = "block";
+    modalImg.src = img.src;
+}
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  var modal = document.getElementById('myModal');
+  modal.style.display = "none";
 }
 </script>
 </body>
