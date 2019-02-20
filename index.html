@@ -238,10 +238,12 @@
       $('#svgdownload-div').append(
         $('<a>')
             .attr('href-lang', 'image/svg+xml')
-            .attr('href', 'data:image/svg+xml;utf8,' +  unescape($('svg')[0].outerHTML))
+            .attr('href', 'data:image/svg+xml;utf8,' +  encodeURIComponent($('svg')[0].outerHTML))
             .attr('download', 'file.svg')
             .text('SVG')
+
         );
+      console.log(unescape($('svg')[0].outerHTML))
     }
     function removePolygon(){
       let count = $("#polygonCount").text();
