@@ -435,7 +435,7 @@
         $("#" + polygonIDs[i]).css("opacity","0");
       }
       for(let i = 0; i < polygonIDs.length; i++){
-        $("#" + polygonIDs[i]).css("animation",animation_opacity + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
+        $("#" + polygonIDs[i]).css("animation",animation_opacity + " 0.1s " + (sec+=0.1).toString() + "s").css("animation-fill-mode","forwards");
       }
       $("#" + pathIDs[1]).css("animation",animation_strokeDashoffset + " 0.5s " + (sec+=0.5).toString() + "s").css("animation-fill-mode","forwards");
 
